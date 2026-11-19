@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>燕云·律吕馆 — 博物志十六版块 × 十二律 × 候气</title>
+<meta name="description" content="燕云十六声·律吕馆：博物志十六版块试音、十二律与历法对应、律吕调阳、吹灰候气、版本时间轴。">
+<style>
+:root{
+  --hdr:64px;
+  --bg:#0E0B08; --bg2:#171208; --panel:#1D1610; --panel2:#241B12;
+  --line:rgba(217,164,65,.22); --line2:rgba(217,164,65,.4);
+  --txt:#F3EAD8; --txt2:#C9BCA4; --txt3:#8F8471;
+  --paper:#F3EAD8; --paper2:#E7DCC4; --ink:#2A2118; --ink2:#5C5040;
+  --zhu:#C0392B; --zhu-hi:#E0553F; --dian:#3D7EA6; --dian-hi:#63A8CE;
+  --jin:#D9A441; --jin-hi:#E9C46A; --tai:#6FA06F; --xuan:#7C8894;
+  --ok:#6FA06F; --warn:#D9A441; --danger:#C0392B; --info:#3D7EA6;
+  --serif:"Songti SC","Noto Serif SC","STSong","SimSun",serif;
+  --sans:"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;
+  --dock:308px;
+}
+body[data-theme="ye"]{--bg:#080D14;--bg2:#0D1520;--panel:#101A26;--panel2:#152232;
+  --line:rgba(99,168,206,.22);--line2:rgba(99,168,206,.42);--txt:#E8EEF4;--txt2:#B4C2CE;--txt3:#75838F;
+  --paper:#E9EEF2;--paper2:#D8E0E6;--ink:#18222C;--ink2:#46586A;--jin:#D9A441;--jin-hi:#E9C46A;}
+body[data-theme="mo"]{--bg:#0B0D0B;--bg2:#121512;--panel:#161A16;--panel2:#1C211C;
+  --line:rgba(111,160,111,.22);--line2:rgba(111,160,111,.42);--txt:#ECEFE6;--txt2:#BCC4B4;--txt3:#7E8678;
+  --paper:#EDEFE4;--paper2:#DDE0D2;--ink:#20261E;--ink2:#4E584A;--zhu:#B03A2E;--dian:#4E8F7B;}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hdr) + 14px)}
+body{background:var(--bg);color:var(--txt);font-family:var(--sans);font-size:14px;line-height:1.7;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:rgba(192,57,43,.55);color:#FFF3E2}
+/* ---- 自有语言滚动条 ---- */
+*{scrollbar-width:thin;scrollbar-color:var(--zhu) var(--bg2)}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:var(--bg2);border-left:1px solid rgba(217,164,65,.08)}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--zhu),#8E2418);border-radius:6px;border:2px solid var(--bg2)}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,var(--zhu-hi),var(--jin))}
+::-webkit-scrollbar-corner{background:var(--bg2)}
+/* ---- 环境层 ---- */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:
+  radial-gradient(1200px 700px at 78% -10%,rgba(217,164,65,.10),transparent 60%),
+  radial-gradient(900px 600px at 8% 108%,rgba(61,126,166,.10),transparent 60%),
+  linear-gradient(180deg,var(--bg),var(--bg2) 60%,var(--bg))}
+.bg .mo{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;animation:drift 46s ease-in-out infinite alternate}
+.bg .mo.a{width:52vw;height:52vw;left:-14vw;top:-18vw;background:radial-gradient(circle,rgba(192,57,43,.16),transparent 65%)}
+.bg .mo.b{width:44vw;height:44vw;right:-12vw;top:22vh;background:radial-gradient(circle,rgba(61,126,166,.14),transparent 65%);animation-delay:-14s}
+.bg .mo.c{width:36vw;height:36vw;left:26vw;bottom:-16vw;background:radial-gradient(circle,rgba(217,164,65,.12),transparent 65%);animation-delay:-28s}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(6vw,4vh,0) scale(1.14)}}
+.bg .grid{position:absolute;inset:0;opacity:.5;background-image:linear-gradient(rgba(217,164,65,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(217,164,65,.05) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(80% 70% at 50% 40%,#000,transparent)}
+.bg .noise{position:absolute;inset:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E")}
+body.no-amb .bg .mo{animation-play-state:paused;opacity:.22}
+/* ---- 头部 ---- */
+header{position:fixed;top:0;left:0;right:0;height:var(--hdr);z-index:60;display:flex;align-items:center;gap:16px;
+  padding:0 20px;background:linear-gradient(180deg,rgba(14,11,8,.94),rgba(14,11,8,.82));backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line)}
+body[data-theme="ye"] header{background:linear-gradient(180deg,rgba(8,13,20,.94),rgba(8,13,20,.82))}
+body[data-theme="mo"] header{background:linear-gradient(180deg,rgba(11,13,11,.94),rgba(11,13,11,.82))}
+.brand{display:flex;align-items:center;gap:11px;min-width:0}
+.brand>div{min-width:0}
+.seal{width:36px;height:36px;flex:0 0 36px;border-radius:6px;background:linear-gradient(150deg,var(--zhu-hi),var(--zhu) 60%,#8E2418);
+  display:grid;place-items:center;font-family:var(--serif);font-size:21px;color:#FFF3E2;
+  box-shadow:0 0 0 1px rgba(255,220,190,.28) inset,0 4px 16px rgba(192,57,43,.42)}
+.brand b{display:block;font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.06em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand b i{font-style:normal}
+.brand span{display:block;font-size:10.5px;color:var(--txt3);letter-spacing:.2em;line-height:1.3}
+nav{display:flex;gap:2px;margin-left:6px}
+nav a{color:var(--txt2);text-decoration:none;font-size:13px;padding:7px 11px;border-radius:7px;position:relative;transition:.22s;white-space:nowrap}
+nav a:hover{color:var(--txt);background:rgba(217,164,65,.09)}
+nav a.on{color:var(--jin)}
+nav a.on::after{content:"";position:absolute;left:11px;right:11px;bottom:2px;height:2px;background:linear-gradient(90deg,var(--zhu),var(--jin));border-radius:2px}
+.hspace{flex:1}
+.btn{font-family:var(--sans);font-size:13px;color:var(--txt);background:rgba(237,226,206,.06);
+  border:1px solid var(--line);padding:8px 14px;border-radius:8px;cursor:pointer;transition:.2s;white-space:nowrap;flex:0 0 auto}
+.btn:hover{border-color:var(--line2);background:rgba(217,164,65,.12);transform:translateY(-1px)}
+.btn:active{transform:translateY(0) scale(.98)}
+.btn.primary{background:linear-gradient(140deg,var(--zhu-hi),var(--zhu) 70%);border-color:rgba(224,85,63,.6);color:#FFF3E2;font-weight:600;
+  box-shadow:0 4px 18px rgba(192,57,43,.35)}
+.btn.primary:hover{box-shadow:0 6px 24px rgba(192,57,43,.5)}
+.btn.small{padding:5px 10px;font-size:12px}
+.snd{display:flex;align-items:center;gap:8px;flex:0 0 auto;padding:6px 11px;border:1px solid var(--line);border-radius:8px;cursor:pointer;
+  color:var(--txt2);font-size:12.5px;transition:.2s;background:rgba(237,226,206,.04);user-select:none}
+.snd:hover{border-color:rgba(99,168,206,.55);color:var(--txt)}
+.snd span{white-space:nowrap}
+.snd .bars{display:flex;align-items:flex-end;gap:2px;height:14px}
+.snd .bars i{width:3px;background:var(--dian-hi);border-radius:1px;height:5px;transition:.2s}
+.snd.on .bars i{animation:eq .9s ease-in-out infinite}
+.snd.on .bars i:nth-child(2){animation-delay:.15s}.snd.on .bars i:nth-child(3){animation-delay:.3s}.snd.on .bars i:nth-child(4){animation-delay:.45s}
+.snd.off .bars i{background:var(--txt3);height:4px;animation:none}
+@keyframes eq{0%,100%{height:4px}50%{height:13px}}
+/* ---- 布局 ---- */
+main{margin-right:var(--dock);padding-top:var(--hdr)}
+.wrap{max-width:1560px;margin:0 auto;padding:0 26px}
+.sec{padding:56px 0 10px}
+.sechead{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.sechead u{font-family:var(--serif);font-size:13px;color:var(--zhu-hi);text-decoration:none;letter-spacing:.2em;border:1px solid rgba(224,85,63,.4);padding:2px 8px;border-radius:5px}
+.sechead h2{font-family:var(--serif);font-size:27px;font-weight:700;letter-spacing:.05em}
+.sechead em{font-style:normal;font-size:12px;color:var(--txt3);letter-spacing:.14em}
+.sechead .dim{margin-left:auto;font-size:11.5px;color:var(--txt3);font-variant-numeric:tabular-nums;border:1px solid var(--line);padding:3px 10px;border-radius:999px}
+.lede{color:var(--txt2);max-width:860px;margin-bottom:20px;font-size:14.5px}
+.lede b{color:var(--jin);font-weight:600}
+.panel{background:linear-gradient(170deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:20px;position:relative}
+.panel h3{font-family:var(--serif);font-size:17px;letter-spacing:.06em;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+.panel h3 .tag{font-family:var(--sans);font-size:10.5px;letter-spacing:.12em;color:var(--txt3);border:1px solid var(--line);padding:2px 8px;border-radius:999px;font-weight:400}
+.panel .psub{font-size:12px;color:var(--txt3);margin-bottom:14px}
+/* ---- hero ---- */
+.hero{position:relative;min-height:calc(92vh - var(--hdr));display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+#heroCv{position:absolute;inset:0;width:100%;height:100%}
+.hero-in{position:relative;z-index:2;display:flex;gap:40px;align-items:center;width:100%;padding:60px 26px}
+.hero-quote{flex:1 1 auto;min-width:0}
+.hero-quote .k{font-size:12px;letter-spacing:.3em;color:var(--jin);margin-bottom:16px}
+.hero-quote blockquote{font-family:var(--serif);font-size:clamp(19px,2.3vw,30px);line-height:1.9;color:var(--txt);max-width:640px;
+  border-left:3px solid var(--zhu);padding-left:22px}
+.hero-quote blockquote b{color:var(--zhu-hi);font-weight:700}
+.hero-quote .src{margin-top:14px;font-size:12px;color:var(--txt3)}
+.hero-quote .src a{color:var(--dian-hi);text-decoration:none;border-bottom:1px dotted var(--dian)}
+.hero-chips{display:flex;gap:9px;flex-wrap:wrap;margin:26px 0 22px}
+.hchip{font-size:12px;color:var(--txt2);border:1px solid var(--line);border-radius:999px;padding:5px 13px;background:rgba(237,226,206,.04)}
+.hchip b{color:var(--jin);font-family:var(--serif);font-size:14px;margin-right:5px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-title{flex:0 0 auto;display:flex;gap:18px;align-items:flex-start}
+.vtitle{writing-mode:vertical-rl;font-family:var(--serif);font-size:clamp(44px,6vw,84px);font-weight:700;letter-spacing:.16em;
+  color:var(--txt);text-shadow:0 0 34px rgba(217,164,65,.35)}
+.vtitle i{font-style:normal;color:var(--zhu-hi)}
+.vsub{writing-mode:vertical-rl;font-size:13px;letter-spacing:.34em;color:var(--txt3);padding-top:8px}
+.hero-seal{width:56px;height:56px;border-radius:8px;background:linear-gradient(150deg,var(--zhu-hi),var(--zhu) 60%,#8E2418);
+  display:grid;place-items:center;font-family:var(--serif);font-size:30px;color:#FFF3E2;box-shadow:0 0 0 1px rgba(255,220,190,.3) inset,0 8px 30px rgba(192,57,43,.5);align-self:flex-end}
+/* ---- 试音 ---- */
+.keys{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0}
+.key{position:relative;border:1px solid var(--line);border-radius:9px;background:linear-gradient(180deg,rgba(237,226,206,.07),rgba(237,226,206,.02));
+  padding:10px 4px 8px;text-align:center;cursor:pointer;transition:.15s;user-select:none}
+.key:hover{border-color:var(--line2);transform:translateY(-2px)}
+.key b{display:block;font-family:var(--serif);font-size:14.5px;font-weight:600;color:var(--txt)}
+.key s{display:block;text-decoration:none;font-size:9.5px;color:var(--txt3);letter-spacing:.05em;margin-top:2px}
+.key.q{background:linear-gradient(180deg,rgba(217,164,65,.22),rgba(217,164,65,.05));border-color:rgba(217,164,65,.5);margin-top:8px}
+.key.q b{color:var(--jin-hi)}
+.key.yang{background:rgba(192,57,43,.10);border-color:rgba(224,85,63,.45)}
+.key.yang b{color:var(--zhu-hi)}
+.key.yin{background:rgba(61,126,166,.10);border-color:rgba(99,168,206,.45)}
+.key.yin b{color:var(--dian-hi)}
+.key.hit{border-color:var(--jin);box-shadow:0 0 0 1px var(--jin),0 0 22px rgba(217,164,65,.45);transform:translateY(-3px)}
+.key.hit b{color:var(--jin-hi)}
+.nowline{display:flex;align-items:center;gap:12px;border:1px dashed var(--line);border-radius:10px;padding:9px 14px;margin-bottom:12px;min-height:44px}
+.nowline .n{font-family:var(--serif);font-size:19px;color:var(--jin-hi);min-width:74px}
+.nowline .f{font-size:11.5px;color:var(--txt3);font-variant-numeric:tabular-nums}
+.nowline .m{margin-left:auto;font-size:11.5px;color:var(--txt2)}
+.seqrow{display:flex;gap:9px;flex-wrap:wrap}
+/* 博物志板 */
+.bgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.bcard{position:relative;background:linear-gradient(175deg,var(--paper),var(--paper2));color:var(--ink);border-radius:11px;padding:12px 12px 10px;
+  cursor:pointer;transition:.18s;border:1px solid rgba(42,33,24,.25);overflow:hidden;text-align:left;font-family:var(--sans)}
+.bcard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.45)}
+.bcard:active{transform:translateY(-1px) scale(.99)}
+.bcard .top{display:flex;align-items:center;gap:7px;margin-bottom:6px}
+.bcard .top b{font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.08em}
+.bcard .diao{font-size:9.5px;letter-spacing:.06em;padding:2px 7px;border-radius:999px;color:#FFF9EC;font-weight:600;white-space:nowrap}
+.bcard p{font-size:11px;line-height:1.65;color:var(--ink2);min-height:54px}
+.bcard .subs{display:flex;gap:4px;flex-wrap:wrap;margin-top:7px}
+.bcard .subs i{font-style:normal;font-size:9.5px;color:var(--ink2);border:1px solid rgba(42,33,24,.28);border-radius:4px;padding:1px 5px}
+.bcard .play{display:block;margin-top:8px;text-align:right;font-size:10px;color:var(--zhu);letter-spacing:.08em;font-weight:600}
+.bcard.hit{box-shadow:0 0 0 2px var(--zhu),0 10px 30px rgba(192,57,43,.4)}
+.bcard.hit::after{content:"";position:absolute;inset:0;background:radial-gradient(120px 60px at 80% 90%,rgba(192,57,43,.22),transparent);pointer-events:none}
+.bnote{margin-top:12px;font-size:11.5px;color:var(--txt3);display:flex;gap:8px;align-items:flex-start}
+.bnote i{font-style:normal;color:var(--warn)}
+/* ---- 版块图录 ---- */
+.pgrid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;align-items:stretch}
+.pcard{position:relative;display:flex;flex-direction:column;background:#232227;border:1px solid rgba(217,164,65,.14);border-radius:10px;
+  padding:8px 8px 9px;cursor:pointer;transition:.18s;text-align:left;font-family:var(--sans)}
+.pcard:hover{transform:translateY(-3px);border-color:var(--line2);box-shadow:0 12px 28px rgba(0,0,0,.5)}
+.pcard:active{transform:translateY(-1px) scale(.99)}
+.pcard .im{position:relative;border-radius:7px;overflow:hidden;background:#232227}
+.pcard .im img{display:block;width:100%;height:auto}
+.pcard .pf{display:flex;flex-direction:column;gap:6px;margin-top:auto;padding-top:8px}
+.pcard .pf .r1{display:flex;align-items:center;gap:7px}
+.pcard .pf .r2{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.pcard .pf b{font-family:var(--serif);font-size:15px;color:var(--jin-hi);letter-spacing:.08em}
+.pcard .pf i{margin-left:auto;font-style:normal;font-size:10px;color:var(--txt3);font-variant-numeric:tabular-nums}
+.pcard.hit{border-color:var(--jin);box-shadow:0 0 0 1px var(--jin),0 0 22px rgba(217,164,65,.35)}
+.pcard.playing{border-color:var(--jin);box-shadow:0 0 0 1px var(--jin),0 0 24px rgba(217,164,65,.4)}
+.pcard.playing::before{content:"♪ 演奏中";position:absolute;top:13px;left:13px;z-index:2;font-size:9.5px;letter-spacing:.08em;
+  color:#FFF3D6;background:rgba(217,164,65,.30);border:1px solid rgba(217,164,65,.6);padding:2px 7px;border-radius:999px}
+.bcard.playing{border-color:var(--zhu-hi);box-shadow:0 0 0 1px var(--zhu),0 8px 24px rgba(192,57,43,.35)}
+.bcard.playing .play{color:var(--zhu-hi)}
+.pseal{font-family:var(--serif);font-size:10px;color:#E8B7A6;border:1px solid rgba(224,85,63,.55);background:rgba(192,57,43,.16);
+  padding:1px 6px;border-radius:4px;letter-spacing:.06em;white-space:nowrap}
+.pins{font-family:var(--serif);font-size:10px;color:var(--jin-hi);border:1px solid rgba(217,164,65,.42);background:rgba(217,164,65,.10);
+  padding:1px 6px;border-radius:4px;letter-spacing:.06em;white-space:nowrap}
+.lb-head .pins{font-size:12px;padding:2px 9px}
+/* ---- 观印lightbox（不遮顶栏与调音台） ---- */
+.lb{position:fixed;top:var(--hdr);left:0;right:var(--dock);bottom:0;z-index:70;display:none;align-items:center;justify-content:center;
+  padding:22px;background:rgba(8,6,4,.82);backdrop-filter:blur(8px);overflow:auto}
+.lb.open{display:flex}
+.lb-dialog{position:relative;display:grid;grid-template-columns:minmax(240px,430px) minmax(280px,1fr);grid-template-rows:minmax(0,1fr);
+  width:100%;max-width:960px;height:100%;max-height:760px;background:linear-gradient(170deg,var(--panel),var(--panel2));
+  border:1px solid var(--line2);border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-im{background:#1B1A1E;display:flex;align-items:center;justify-content:center;padding:14px;min-height:0}
+.lb-im img{max-width:100%;max-height:100%;object-fit:contain;border-radius:6px;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.lb-info{padding:18px 20px 0;overflow-y:auto;min-height:0}
+.lb-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;padding-right:36px}
+.lb-head b{font-family:var(--serif);font-size:26px;color:var(--txt);letter-spacing:.08em}
+.lb-head .pseal{font-size:12px;padding:2px 9px}
+.lbidx{margin-left:auto;font-size:11px;color:var(--txt3);font-variant-numeric:tabular-nums}
+.lb-close{position:absolute;top:10px;right:10px;z-index:2;width:30px;height:30px;border-radius:8px;border:1px solid var(--line);
+  background:rgba(237,226,206,.06);color:var(--txt2);cursor:pointer;font-size:15px;line-height:1;transition:.15s}
+.lb-close:hover{border-color:var(--zhu-hi);color:var(--zhu-hi)}
+.lb-rows .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:6px 2px;font-size:12.5px}
+.lb-rows .row s{text-decoration:none;color:var(--txt3);letter-spacing:.1em;font-size:11.5px;flex:0 0 auto}
+.lb-rows .row b{font-family:var(--serif);font-size:13.5px;color:var(--txt2);font-weight:600;text-align:right}
+.lb-quote{margin:12px 0;font-family:var(--serif);font-size:14px;line-height:1.9;color:var(--txt2);border-left:3px solid var(--jin);padding-left:12px}
+.lb-subs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.lb-subs i{font-style:normal;font-size:10px;color:var(--txt3);border:1px solid var(--line);border-radius:4px;padding:1px 6px}
+.lb-btns{display:flex;gap:8px;flex-wrap:wrap;position:sticky;bottom:0;z-index:1;margin-top:8px;padding:10px 0 16px;
+  background:var(--panel2);border-top:1px solid var(--line)}
+.lb-btns::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(180deg,transparent,var(--panel2));pointer-events:none}
+/* ---- 律历轮 ---- */
+.wheelwrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:18px;align-items:start}
+#wheelCv{width:100%;display:block;cursor:pointer;border-radius:14px}
+.wdetail .row{display:flex;justify-content:space-between;gap:10px;border-bottom:1px dashed var(--line);padding:8px 2px;font-size:13px}
+.wdetail .row s{text-decoration:none;color:var(--txt3);font-size:12px;letter-spacing:.1em}
+.wdetail .row b{font-family:var(--serif);font-size:15px;color:var(--txt);font-weight:600;text-align:right}
+.wdetail .big{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--jin-hi);letter-spacing:.1em;margin:2px 0 6px}
+.wdetail .yy{display:inline-block;font-size:11px;padding:2px 10px;border-radius:999px;margin-left:10px;vertical-align:middle}
+.yy.yang{background:rgba(192,57,43,.18);color:var(--zhu-hi);border:1px solid rgba(224,85,63,.45)}
+.yy.yin{background:rgba(61,126,166,.16);color:var(--dian-hi);border:1px solid rgba(99,168,206,.45)}
+.wdetail .say{margin:12px 0;font-size:13px;color:var(--txt2);border-left:3px solid var(--jin);padding-left:12px;line-height:1.8}
+.wdetail .test{font-size:12px;color:var(--dian-hi);background:rgba(61,126,166,.1);border:1px solid rgba(99,168,206,.35);border-radius:8px;padding:7px 11px;margin-bottom:12px}
+.wtable{width:100%;min-width:960px;border-collapse:collapse;font-size:12.5px}
+.wtable th{font-size:11px;color:var(--txt3);letter-spacing:.12em;text-align:left;font-weight:500;padding:7px 8px;border-bottom:1px solid var(--line2);white-space:nowrap}
+.wtable td{padding:7px 8px;border-bottom:1px dashed var(--line);color:var(--txt2)}
+.wtable td:first-child{font-family:var(--serif);font-size:14px;color:var(--txt);cursor:pointer;white-space:nowrap}
+.wtable .wq{font-size:11.5px;color:var(--txt3);line-height:1.6;min-width:230px}
+.wtable tr:hover td{background:rgba(217,164,65,.06)}
+.wtable tr.on td{background:rgba(192,57,43,.12)}
+.wtable tr.qrow td:first-child{color:var(--jin-hi)}
+.wtable tr.qrow:hover td{background:rgba(217,164,65,.10)}
+.wtable tr.hit td{background:rgba(217,164,65,.16)}
+.wtable .na{color:var(--txt3)}
+/* ---- 调阳 ---- */
+.tgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:18px;align-items:start}
+.prose p{margin-bottom:12px;color:var(--txt2);font-size:13.5px}
+.prose p b{color:var(--jin)}
+.prose .cite{font-size:11.5px;color:var(--txt3);border:1px dashed var(--line);border-radius:8px;padding:8px 12px;margin-top:6px}
+.prose .cite i{font-style:normal;color:var(--warn)}
+.ftable{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
+.ftable th{font-size:11px;color:var(--txt3);letter-spacing:.1em;text-align:left;font-weight:500;padding:6px 8px;border-bottom:1px solid var(--line2)}
+.ftable td{padding:7px 8px;border-bottom:1px dashed var(--line);color:var(--txt2)}
+.ftable td:first-child{font-family:var(--serif);font-size:15px;font-weight:700;cursor:pointer}
+.ftable tr:hover td{background:rgba(217,164,65,.06)}
+.ftscroll{overflow-x:auto;padding-bottom:6px}
+.ftable{min-width:700px}
+.ftable .l16,.ftable .q16{font-family:var(--serif);display:inline-block;min-width:46px;margin-right:6px;white-space:nowrap}
+.ftable .l16.ya{color:var(--zhu-hi)}
+.ftable .l16.yi{color:var(--dian-hi)}
+.ftable .q16{color:var(--jin-hi)}
+.xg{margin-top:16px}
+.xg .sel{display:flex;gap:5px;flex-wrap:wrap;margin:8px 0 10px}
+.xg .sel button{font-family:var(--serif);font-size:12px;padding:4px 9px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--txt2);cursor:pointer;transition:.15s}
+.xg .sel button.on{background:rgba(217,164,65,.16);border-color:var(--jin);color:var(--jin-hi)}
+.xgscroll{overflow-x:auto;padding-bottom:6px}
+.xgrid{display:grid;grid-template-columns:44px repeat(12,minmax(40px,1fr));gap:4px;min-width:640px}
+.xgrid .rl{font-family:var(--serif);font-size:14px;display:flex;align-items:center;justify-content:center;color:var(--txt2)}
+.xgrid .cl{font-size:10px;color:var(--txt3);text-align:center;padding:2px 0;font-family:var(--serif)}
+.xcell{height:30px;border-radius:6px;border:1px solid rgba(217,164,65,.12);background:rgba(237,226,206,.03);cursor:pointer;transition:.12s;position:relative}
+.xcell:hover{border-color:var(--line2)}
+.xcell.on{background:linear-gradient(160deg,var(--zhu-hi),var(--zhu));border-color:var(--zhu-hi);box-shadow:0 0 12px rgba(192,57,43,.4)}
+.xcell.on::after{content:attr(data-n);position:absolute;inset:0;display:grid;place-items:center;font-family:var(--serif);font-size:12px;color:#FFF3E2}
+.xcell.gongcol{border-color:rgba(217,164,65,.5)}
+.bayin{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.by{border:1px solid var(--line);border-radius:11px;padding:12px;cursor:pointer;transition:.16s;background:linear-gradient(170deg,rgba(237,226,206,.05),transparent);text-align:left}
+.by:hover{transform:translateY(-3px);border-color:var(--line2)}
+.by.hit{box-shadow:0 0 0 1px var(--jin),0 0 20px rgba(217,164,65,.35)}
+.by b{font-family:var(--serif);font-size:20px;color:var(--jin-hi);display:block}
+.by s{display:block;text-decoration:none;font-size:10.5px;color:var(--txt3);letter-spacing:.1em;margin:2px 0 6px}
+.by p{font-size:11.5px;color:var(--txt2)}
+/* ---- 候气 ---- */
+#houCv{width:100%;display:block;border-radius:14px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(237,226,206,.03),transparent)}
+.houscroll{overflow-x:auto;padding-bottom:4px}
+.houbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.qitrack{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;margin:10px 0}
+.qi{border:1px solid var(--line);border-radius:7px;padding:5px 2px;text-align:center;font-size:10.5px;color:var(--txt3);transition:.2s;cursor:pointer}
+.qi b{display:block;font-family:var(--serif);font-size:12px;color:var(--txt2);font-weight:600}
+.qi.on{border-color:var(--jin);background:rgba(217,164,65,.14);color:var(--jin)}
+.qi.on b{color:var(--jin-hi)}
+.qi.done{border-color:rgba(111,160,111,.4);color:var(--ok)}
+.houlog{border:1px dashed var(--line);border-radius:10px;padding:10px 14px;font-size:12.5px;color:var(--txt2);min-height:86px}
+.houlog div{padding:2px 0;border-bottom:1px dotted rgba(217,164,65,.12)}
+.houlog div:last-child{border-bottom:none}
+.houlog b{color:var(--jin-hi);font-family:var(--serif)}
+.houlog i{font-style:normal;color:var(--txt3);font-size:11px;margin-left:8px}
+/* ---- 时间轴：开服前四测 + 八赛季 ---- */
+.tgrid2{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tcard{position:relative;display:flex;flex-direction:column;gap:6px;text-align:left;background:linear-gradient(170deg,var(--panel2),var(--panel));
+  border:1px solid var(--line);border-top:3px solid var(--zhu-hi);border-radius:12px;padding:12px 14px;cursor:pointer;transition:.18s;font-family:var(--sans)}
+.tcard.yin{border-top-color:var(--dian-hi)}
+.tcard:hover{transform:translateY(-3px);border-color:var(--line2);box-shadow:0 12px 26px rgba(0,0,0,.45)}
+.tcard .tc-top{display:flex;align-items:center;gap:8px}
+.tcard .tc-top i{margin-left:auto;font-style:normal;font-size:10px;color:var(--txt3);letter-spacing:.14em}
+.tcard b{font-family:var(--serif);font-size:19px;color:var(--txt);letter-spacing:.06em}
+.tcard s{text-decoration:none;font-size:11.5px;color:var(--jin);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.tcard p{font-size:11.5px;color:var(--txt3);line-height:1.65}
+.tcard .tc-play{margin-top:auto;font-size:10px;font-weight:600;letter-spacing:.08em;color:var(--zhu-hi)}
+.tcard.yin .tc-play{color:var(--dian-hi)}
+.tcard.hit,.srow.hit{box-shadow:0 0 0 1px var(--jin),0 0 22px rgba(217,164,65,.35)}
+.cycle{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 12px}
+.cy{font-family:var(--serif);font-size:12px;padding:3px 12px;border-radius:999px;border:1px solid rgba(224,85,63,.5);background:rgba(192,57,43,.14);color:var(--zhu-hi)}
+.cy.yin{border-color:rgba(99,168,206,.5);background:rgba(61,126,166,.14);color:var(--dian-hi)}
+.cycle i{font-style:normal;color:var(--txt3)}
+.cycle em{font-style:normal;font-size:11px;color:var(--txt3);margin-left:4px}
+.spine{position:relative;padding-left:26px}
+.spine::before{content:"";position:absolute;left:8px;top:10px;bottom:10px;width:2px;border-radius:1px;
+  background:linear-gradient(180deg,var(--zhu-hi),var(--dian-hi) 30%,var(--zhu-hi) 55%,var(--dian-hi) 80%,var(--jin))}
+.srow{position:relative;display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;background:transparent;border:0;border-radius:10px;
+  padding:9px 10px 9px 0;cursor:pointer;transition:.16s;font-family:var(--sans)}
+.srow:hover{background:rgba(217,164,65,.06)}
+.sdot{position:absolute;left:-24px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--zhu-hi);box-shadow:0 0 0 3px var(--bg),0 0 10px rgba(224,85,63,.7)}
+.srow.yin .sdot{background:var(--dian-hi);box-shadow:0 0 0 3px var(--bg),0 0 10px rgba(99,168,206,.7)}
+.srow.now .sdot{animation:nowpulse 1.8s ease-out infinite}
+@keyframes nowpulse{0%{box-shadow:0 0 0 3px var(--bg),0 0 0 3px rgba(233,196,106,.55)}70%{box-shadow:0 0 0 3px var(--bg),0 0 0 12px rgba(233,196,106,0)}100%{box-shadow:0 0 0 3px var(--bg),0 0 0 12px rgba(233,196,106,0)}}
+.sbody{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.s1{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.sord{font-style:normal;font-family:var(--serif);font-size:11px;color:var(--txt3)}
+.s1 b{font-family:var(--serif);font-size:19px;letter-spacing:.06em;color:var(--zhu-hi)}
+.srow.yin .s1 b{color:var(--dian-hi)}
+.nowchip{font-size:9.5px;padding:2px 8px;border-radius:999px;border:1px solid rgba(217,164,65,.6);background:rgba(217,164,65,.16);color:var(--jin-hi);letter-spacing:.1em}
+.scyc{margin-left:auto;font-size:10px;color:var(--txt3);border:1px dashed var(--line2);padding:2px 8px;border-radius:999px;white-space:nowrap}
+.s2{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:11.5px;color:var(--txt2)}
+.s2 s{text-decoration:none;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.sver{font-size:10.5px;color:var(--jin-hi);border:1px solid rgba(217,164,65,.35);background:rgba(217,164,65,.08);padding:1px 8px;border-radius:999px;white-space:nowrap}
+.splay{align-self:center;color:var(--txt3);font-size:11px}
+.srow:hover .splay{color:var(--jin-hi)}
+.lvchip{font-size:9.5px;padding:1px 7px;border-radius:999px;border:1px solid;font-weight:600;white-space:nowrap}
+.lvchip.yang{color:var(--zhu-hi);border-color:rgba(224,85,63,.5);background:rgba(192,57,43,.14)}
+.lvchip.yin{color:var(--dian-hi);border-color:rgba(99,168,206,.5);background:rgba(61,126,166,.14)}
+/* ---- 调音台 ---- */
+.ctrl{position:fixed;top:var(--hdr);right:0;bottom:0;width:var(--dock);z-index:50;overflow-y:auto;
+  background:linear-gradient(170deg,rgba(30,23,16,.97),rgba(12,9,6,.985));backdrop-filter:blur(16px);
+  border-left:1px solid var(--line);padding:18px 16px 26px}
+body[data-theme="ye"] .ctrl{background:linear-gradient(170deg,rgba(16,26,38,.97),rgba(8,13,20,.985))}
+body[data-theme="mo"] .ctrl{background:linear-gradient(170deg,rgba(22,26,22,.97),rgba(11,13,11,.985))}
+.ctrl h4{font-family:var(--serif);font-size:16px;letter-spacing:.1em;display:flex;align-items:center;gap:8px;margin-bottom:2px}
+.ctrl h4::before{content:"";width:4px;height:16px;background:linear-gradient(180deg,var(--zhu-hi),var(--jin));border-radius:2px}
+.ctrl .live{font-size:10.5px;color:var(--txt3);letter-spacing:.18em;margin-bottom:14px}
+.dockmin{margin-left:auto;width:24px;height:24px;border-radius:6px;border:1px solid var(--line);background:transparent;color:var(--txt3);font-size:14px;line-height:1;cursor:pointer;transition:.15s;flex:none}
+.dockmin:hover{border-color:var(--jin);color:var(--jin-hi);box-shadow:0 0 10px rgba(217,164,65,.3)}
+.dockpill{display:none;position:fixed;right:16px;bottom:16px;z-index:65;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;border:1px solid rgba(217,164,65,.55);background:linear-gradient(170deg,var(--panel2),var(--panel));color:var(--jin-hi);font-family:var(--serif);font-size:13px;letter-spacing:.1em;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:.15s}
+.dockpill:hover{border-color:var(--jin-hi);box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 18px rgba(217,164,65,.35);transform:translateY(-2px)}
+.dockpill b{font-size:12px;opacity:.8}
+.dockpill .bars{display:flex;gap:2px;align-items:flex-end;height:12px}
+.dockpill .bars i{width:3px;border-radius:1px;background:var(--jin-hi)}
+.dockpill .bars i:nth-child(1){height:6px}
+.dockpill .bars i:nth-child(2){height:12px}
+.dockpill .bars i:nth-child(3){height:8px}
+body.dock-min{--dock:0px}
+body.dock-min #ctrl{display:none}
+body.dock-min .dockpill{display:flex}
+.cg{margin-bottom:15px}
+.cg label{display:flex;justify-content:space-between;font-size:11.5px;color:var(--txt2);letter-spacing:.08em;margin-bottom:6px}
+.cg label output{color:var(--jin);font-variant-numeric:tabular-nums}
+.cg input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--zhu) var(--p,50%),rgba(237,226,206,.14) var(--p,50%));outline:none;cursor:pointer}
+.cg input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:radial-gradient(circle at 35% 30%,var(--jin-hi),var(--jin) 60%,#8a6420);border:1px solid rgba(255,230,180,.5);box-shadow:0 0 10px rgba(217,164,65,.55);cursor:grab}
+.cg input[type=range]::-moz-range-thumb{width:15px;height:15px;border-radius:50%;background:var(--jin);border:1px solid rgba(255,230,180,.5);cursor:grab}
+.cg select{width:100%;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:12.5px;font-family:var(--sans);cursor:pointer;outline:none}
+.cg select:focus{border-color:var(--line2)}
+.tgl{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--txt2);padding:6px 0;cursor:pointer;user-select:none}
+.tgl .sw{width:38px;height:20px;border-radius:999px;background:rgba(237,226,206,.14);position:relative;transition:.2s;flex:0 0 38px}
+.tgl .sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:var(--txt3);transition:.2s}
+.tgl.on .sw{background:linear-gradient(90deg,var(--zhu),var(--zhu-hi))}
+.tgl.on .sw::after{left:20px;background:#FFF3E2}
+.cbtns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.cbtns .btn{width:100%;text-align:center}
+.cbtns .wide{grid-column:1/-1}
+.csep{border:none;border-top:1px dashed var(--line);margin:14px 0}
+/* ---- toast / reveal ---- */
+.toasts{position:fixed;right:calc(var(--dock) + 16px);bottom:18px;z-index:80;display:flex;flex-direction:column;gap:8px;align-items:flex-end;pointer-events:none}
+.toast{background:linear-gradient(160deg,rgba(36,28,20,.97),rgba(20,15,10,.97));border:1px solid var(--line2);border-left:3px solid var(--jin);
+  color:var(--txt);font-size:12.5px;padding:9px 15px;border-radius:9px;box-shadow:0 10px 30px rgba(0,0,0,.5);animation:tin .25s ease;max-width:340px}
+.toast.ok{border-left-color:var(--ok)}
+.toast.warn{border-left-color:var(--warn)}
+.toast.err{border-left-color:var(--danger)}
+@keyframes tin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+footer{border-top:1px solid var(--line);margin-top:60px;padding:34px 0 46px}
+footer .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+footer h5{font-family:var(--serif);font-size:14px;letter-spacing:.12em;color:var(--jin);margin-bottom:10px}
+footer p,footer li{font-size:11.5px;color:var(--txt3);line-height:1.9}
+footer li{list-style:none}
+footer a{color:var(--dian-hi);text-decoration:none;border-bottom:1px dotted var(--dian)}
+footer .fine{margin-top:22px;font-size:11px;color:var(--txt3);border-top:1px dashed var(--line);padding-top:14px}
+/* ---- 响应式 ---- */
+@media(max-width:1400px){:root{--dock:280px}.bgrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  nav a{padding:7px 8px;font-size:12.5px}}
+@media(max-width:1180px){
+  :root{--dock:0px}
+  main{margin-right:0;padding-bottom:calc(38vh + 26px)}
+  .ctrl{top:auto;left:0;right:0;bottom:0;width:auto;max-height:38vh;border-left:none;border-top:1px solid var(--line2);
+    border-radius:14px 14px 0 0;box-shadow:0 -14px 40px rgba(0,0,0,.7);padding:13px 16px calc(13px + env(safe-area-inset-bottom))}
+  .wheelwrap,.tgrid{grid-template-columns:minmax(0,1fr)}
+  .toasts{right:12px;bottom:calc(38vh + 12px)}
+  .lb{bottom:38vh}
+  nav{display:none}
+  .bgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .pgrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  footer .cols{grid-template-columns:1fr 1fr}
+}
+@media(max-width:860px){
+  :root{--hdr:58px}
+  .brand span{display:none}
+  .wrap{padding:0 14px}
+  .hero-in{flex-direction:column-reverse;align-items:flex-start;gap:22px;padding:36px 14px}
+  .hero-title{align-self:flex-end}
+  .vtitle{font-size:44px}
+  .bgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bayin{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .keys{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .sechead h2{font-size:22px}
+  .sec{padding:38px 0 6px}
+  footer .cols{grid-template-columns:1fr}
+  .qitrack{grid-template-columns:repeat(6,minmax(0,1fr))}
+  #houCv{min-width:820px}
+  .tgrid2{grid-template-columns:1fr 1fr}
+  .scyc{margin-left:0}
+  .lb{padding:12px}
+  .lb-dialog{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);max-height:none}
+  .lb-im{padding:10px}
+  .lb-im img{max-height:34vh}
+  .lb-info{padding:14px 16px 0}
+  .lb-head b{font-size:21px}
+}
+@media(max-width:520px){
+  header{gap:9px;padding:0 11px}
+  .btn{padding:7px 10px;font-size:12px}
+  .brand b{font-size:15px}
+  .brand b i{display:none}
+  .bgrid{grid-template-columns:1fr 1fr}
+  .pgrid{grid-template-columns:1fr 1fr}
+  .bcard p{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+body.dock-min .toasts{bottom:72px}
+body.dock-min footer{padding-bottom:92px}
+</style>
+</head>
+<body data-theme="xuan">
+<div class="bg"><div class="mo a"></div><div class="mo b"></div><div class="mo c"></div><div class="grid"></div><div class="noise"></div></div>
+
+<header>
+  <div class="brand">
+    <div class="seal">律</div>
+    <div><b>燕云·律吕馆<i> · 博物志 × 十二律</i></b><span>十六版块 · 律历 · 候气 · 版本周期</span></div>
+  </div>
+  <nav>
+    <a href="#gallery" class="on">版块图录</a><a href="#corresp">律历对应</a><a href="#tiaoyang">律吕调阳</a><a href="#houqi">吹灰候气</a><a href="#timeline">版本时间轴</a>
+  </nav>
+  <div class="hspace"></div>
+  <div class="snd on" id="sndBtn" role="button" tabindex="0" aria-label="声音开关">
+    <div class="bars"><i></i><i></i><i></i><i></i></div><span id="sndTxt">律吕 开</span>
+  </div>
+  <button class="btn primary" id="seqTop">▶ 博物志音律</button>
+</header>
+
+<main>
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <canvas id="heroCv"></canvas>
+  <div class="wrap hero-in" id="heroIn">
+    <div class="hero-quote">
+      <div class="k">燕云十六声 · 律吕馆</div>
+      <blockquote>眼见之景，耳闻之声，林林总总，皆是文明。以<b>十二律、四清声</b>喻之，传于后世，利于万民，是为<b>燕云十六声</b>。</blockquote>
+      <div class="src">—— 燕云十六声 · <a href="https://yy16s.huijiwiki.com/wiki/%E5%8D%9A%E7%89%A9%E5%BF%97" target="_blank" rel="noopener">博物志</a> 题记</div>
+      <div class="hero-chips">
+        <span class="hchip"><b>16</b>博物版块</span>
+        <span class="hchip"><b>12+4</b>律吕试音</span>
+        <span class="hchip"><b>8</b>八音材质</span>
+        <span class="hchip"><b>5</b>五音旋宫</span>
+        <span class="hchip"><b>12</b>中气候气</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#gallery" style="text-decoration:none">版块图录</a>
+        <a class="btn" href="#corresp" style="text-decoration:none">律历对应</a>
+        <a class="btn" href="#tiaoyang" style="text-decoration:none">律吕调阳</a>
+        <a class="btn" href="#houqi" style="text-decoration:none">吹灰候气</a>
+        <a class="btn" href="#timeline" style="text-decoration:none">版本时间轴</a>
+        <a class="btn primary" href="#tiaoyang" style="text-decoration:none">入馆试音</a>
+      </div>
+    </div>
+    <div class="hero-title">
+      <div class="vsub">吹灰候气 · 律历相通</div>
+      <div class="vtitle">律吕<i>调阳</i></div>
+      <div class="hero-seal">声</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 版块图录 ================= -->
+<section class="sec" id="gallery">
+  <div class="wrap">
+    <div class="sechead rv"><u>壹</u><h2>版块图录</h2><em>SIXTEEN TITLE CARDS</em><span class="dim">游戏内题卡 · 金书＋律印＋乐器白描</span></div>
+    <p class="lede rv">十六帧游戏内「博物志」版块题卡：金书版块名、朱印律名、乐器白描。朱印恰为<b>十二律＋四清声各一</b>，与题记「以十二律、四清声喻之」互证——十六版块即十六声。点任一帧<b>即奏其声并放大观印</b>；下方卡片可逐块对照试听。</p>
+    <div class="panel rv">
+      <h3>博物志 · 十六版块题卡 <span class="tag">即奏 · 观印</span></h3>
+      <div class="psub">点击题卡奏其声并开观印 · 灯箱内 ←／→ 换帧 · Esc 关闭</div>
+      <div class="pgrid" id="pgrid"></div>
+    </div>
+    <div class="panel rv" style="margin-top:18px">
+      <h3>十六版块 · 逐块试听 <span class="tag">点击即播</span></h3>
+      <div class="psub">版块名与题记出自燕云·博物志各版块页 · 点击卡片试听</div>
+      <div class="bgrid" id="bgrid"></div>
+      <div class="bnote"><i>※</i><span>点击卡片即播该版块之声；音频不可用时，自动以该版块调式的合成音色替代。</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 律历对应 ================= -->
+<section class="sec" id="corresp">
+  <div class="wrap">
+    <div class="sechead rv"><u>贰</u><h2>音律 × 历法</h2><em>TWELVE LÜ × CALENDAR</em><span class="dim">点击轮盘任一律</span></div>
+    <p class="lede rv">古人以十二律配<b>十二月、十二辰、十二中气</b>：冬至一阳生，黄钟应之；夏至一阴生，蕤宾应之。律是音的尺度，也是历的尺度——这正是「律吕调阳」的底层逻辑。轮盘可点，亦备表格视图；表末另列<b>四清声</b>：高八度之声不配月辰，缺项以 - 记。</p>
+    <div class="wheelwrap">
+      <div class="panel rv" style="padding:14px">
+        <canvas id="wheelCv"></canvas>
+        <div class="seqrow" style="margin-top:10px">
+          <button class="btn small" id="wView">切换表格视图</button>
+          <button class="btn small" id="wPlay">▶ 奏所选律</button>
+          <button class="btn small" id="wExp">导出对应图 PNG</button>
+        </div>
+      </div>
+      <div class="panel rv wdetail" id="wDetail"></div>
+    </div>
+    <div class="panel rv" id="wTableWrap" style="display:none;margin-top:16px;overflow-x:auto">
+      <table class="wtable" id="wTable"></table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 律吕调阳 ================= -->
+<section class="sec" id="tiaoyang">
+  <div class="wrap">
+    <div class="sechead rv"><u>叁</u><h2>律吕调阳</h2><em>WHY PITCH REGULATES THE YEAR</em><span class="dim">点键试音 · 五音旋宫 · 八音材质</span></div>
+    <div class="tgrid">
+      <div class="panel rv prose">
+        <h3>「律吕调阳」解 <span class="tag">《千字文》句</span></h3>
+        <p><b>律吕</b>即十二律：六阳声为「律」（黄钟、太簇、姑洗、蕤宾、夷则、无射），六阴声为「吕」（大吕、夹钟、仲吕、林钟、南吕、应钟），合称律吕。点下方任一律键可听其音。</p>
+        <div class="psub">律吕试音 · 点键即响 · 音高按十二平均律示意 · 可整段「奏十六声」</div>
+        <div class="nowline"><span class="n" id="nowName">—</span><span class="f" id="nowFreq">未击键</span><span class="m" id="nowTimbre">音色：钟（金）</span></div>
+        <div class="keys" id="keys"></div>
+        <div class="seqrow">
+          <button class="btn primary" id="seqBtn">▶ 奏十六声（十二律 + 四清声）</button>
+          <button class="btn" id="seqStop">■ 停止</button>
+        </div>
+        <p style="margin-top:14px"><b>调阳</b>者，调和阴阳、校准历法之气。古人相信律管与节气之气相感：某气至，则相应律管中的葭莩灰飞动（即「候气」），于是律成了历的校验器——音准与历准互为表里。</p>
+        <p>落到燕云：测试以律命名（蕤宾、黄钟、仲吕、夷则），博物志十六版块以五调与四清声喻类——<b>命名本身就是一套律历叙事</b>。</p>
+        <div class="cite"><i>※</i> 候气属古代礼乐／历法思想，现代实验无法稳定复现「气至灰飞」；本站候气动画为意象演示，非物理事实。五音配五行等对应为传统归类，非声学结论。</div>
+      </div>
+      <div class="panel rv">
+        <h3>五音 × 五行 × 旋相为宫 <span class="tag">可点可听</span></h3>
+        <div class="psub">五音为阶名，十二律为音高；任一律为宫，余四音依次而立（旋宫）</div>
+        <div class="ftscroll"><table class="ftable" id="ftable"></table></div>
+        <div class="psub" id="fNote" style="margin-top:8px"></div>
+        <div class="xg">
+          <label style="font-size:11.5px;color:var(--txt2);letter-spacing:.08em">选宫律（点击格子弹该律）</label>
+          <div class="sel" id="gongSel"></div>
+          <div class="xgscroll"><div class="xgrid" id="xgrid"></div></div>
+          <div class="psub" id="xgNote" style="margin-top:8px"></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel rv" style="margin-top:18px">
+      <h3>八音 · 材质即音色 <span class="tag">《尚书·舜典》：八音克谐，无相夺伦</span></h3>
+      <div class="psub">金石丝竹匏土革木 —— 点击听该材质的合成音色动机</div>
+      <div class="bayin" id="bayin"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 吹灰候气 ================= -->
+<section class="sec" id="houqi">
+  <div class="wrap">
+    <div class="sechead rv"><u>肆</u><h2>吹灰候气</h2><em>ASH-WAITING FOR THE QI</em><span class="dim">意象演示 · 非物理复现</span></div>
+    <p class="lede rv">《后汉书·律历志》载候气之法：缇室密闭，按方位陈十二律管，管端覆葭莩灰；<b>某气至，则相应管灰飞</b>。下面把这一仪式做成可运行的动画：气序推进，灰自管口扬起，同时响该律之音。速度、灰量在右侧调音台。</p>
+    <div class="panel rv">
+      <div class="houscroll"><canvas id="houCv"></canvas></div>
+      <div class="houbar">
+        <button class="btn primary" id="houRun">▶ 开始候气</button>
+        <button class="btn" id="houNext">下一气至</button>
+        <button class="btn" id="houReset">复位</button>
+        <span style="font-size:12px;color:var(--txt3)" id="houNow">待气：冬至 · 黄钟</span>
+      </div>
+      <div class="qitrack" id="qitrack"></div>
+      <div class="houlog" id="houlog"><div><b>缇室已闭</b> · 十二管陈毕 · 葭莩灰覆管端<i>待「开始候气」</i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 时间轴 ================= -->
+<section class="sec" id="timeline">
+  <div class="wrap">
+    <div class="sechead rv"><u>伍</u><h2>版本时间轴</h2><em>TESTS → SEASONS</em><span class="dim">开服前四测 · 开服后八季 · 以律名季</span></div>
+    <p class="lede rv">开服前以律名测：<b>蕤宾／黄钟／仲吕／夷则</b>四测递进；开服后以律名季：<b>黄钟→夹钟→蕤宾→南吕</b>四律一巡、八季两巡，<b style="color:var(--zhu-hi)">阳律之季</b>与<b style="color:var(--dian-hi)">阴吕之季</b>相间而行。点任一测／季，可听其律之音。</p>
+    <div class="panel rv">
+      <h3>开服前 · 四测 <span class="tag">点测听律</span></h3>
+      <div class="psub">测试以律为名 · 点击卡片听该律之音</div>
+      <div class="tgrid2" id="tlTests"></div>
+    </div>
+    <div class="panel rv" style="margin-top:18px">
+      <h3>开服后 · 八赛季 <span class="tag">律吕循环</span></h3>
+      <div class="cycle" id="tlCycle"></div>
+      <div class="spine" id="tlSeasons"></div>
+      <div class="bnote"><i>※</i><span>赛季跨度与版本区间据公开版本信息整理；「今」表示该赛季进行中。点击季卡听其律。</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h5>版块题记来源</h5>
+        <ul>
+          <li>燕云十六声 · <a href="https://yy16s.huijiwiki.com/wiki/%E5%8D%9A%E7%89%A9%E5%BF%97" target="_blank" rel="noopener">博物志</a> 及十六版块子页（食饮／书画／民器／兵戈／乐舞／诗话／娱戏／侠道／医术／律令／方外／营造／商贾／天象／风物／授业）之 Quote 题记，原文照录。</li>
+          <li>书画题记录自「绘画」子页；医术题记录自「杂症」子页（主页未置题记）。</li>
+          <li>朱印律名照录游戏画面，与题记之调式描述两说并行、不作互改；乐器名签与题卡白描核对一致。</li>
+        </ul>
+      </div>
+      <div>
+        <h5>时间轴来源</h5>
+        <ul>
+          <li>开服前四测：蕤宾 2023-06-09、黄钟 2023-12-15、仲吕 2024-05-31、夷则 2024-08-28；日期与规模据官方测试公告。</li>
+          <li>八赛季之名、跨度与版本区间（1.0 – 2.9.5A）：据官方版本更新公告逐版整理；「今」表示该赛季进行中。</li>
+          <li>赛季以黄钟／夹钟／蕤宾／南吕四律命名、两巡相接；律之阴阳属性依传统十二律体系。</li>
+        </ul>
+      </div>
+      <div>
+        <h5>校读备注</h5>
+        <ul>
+          <li>十二律配月／辰／中气为传统律历对应（《汉书·律历志》《淮南子》体系），非现代声学结论。</li>
+          <li>旋宫格内音位按十二平均律半音示意（宫0 商2 角4 徵7 羽9）；三分损益实际音分略有出入。</li>
+          <li>候气为礼乐意象演示；试听音频不可用时的占位音色为按调式生成的合成动机，非游戏原声。</li>
+        </ul>
+      </div>
+    </div>
+    <div class="fine">燕云·律吕馆 · 合成音色由 WebAudio 实时生成</div>
+  </div>
+</footer>
+</main>
+
+<!-- ================= 调音台 ================= -->
+<aside class="ctrl" id="ctrl">
+  <h4>调音台<button class="dockmin" id="dockMin" title="最小化调音台" aria-label="最小化调音台">—</button></h4>
+  <div class="live">LIVE · 改动即时生效</div>
+  <div class="cg"><label>总音量 <output id="oVol">80</output></label><input type="range" id="rVol" min="0" max="100" value="80"></div>
+  <div class="cg"><label>余韵长短 <output id="oDec">100</output></label><input type="range" id="rDec" min="40" max="200" value="100"></div>
+  <div class="cg"><label>合成音色</label><select id="selTimbre">
+    <option value="zhong">钟 · 金</option><option value="qing">磬 · 石</option><option value="tan">琴 · 丝</option><option value="di">箫 · 竹</option>
+    <option value="sheng">笙 · 匏</option><option value="xun">埙 · 土</option><option value="gu">鼓 · 革</option><option value="mu">柷 · 木</option>
+  </select></div>
+  <div class="cg"><label>奏十六声 · 步速 ms <output id="oSeq">235</output></label><input type="range" id="rSeq" min="120" max="420" value="235"></div>
+  <hr class="csep">
+  <div class="cg"><label>候气速度 <output id="oHou">100</output></label><input type="range" id="rHou" min="20" max="300" value="100"></div>
+  <div class="cg"><label>葭灰量 <output id="oAsh">60</output></label><input type="range" id="rAsh" min="10" max="100" value="60"></div>
+  <div class="cg"><label>光晕强度 <output id="oGlow">50</output></label><input type="range" id="rGlow" min="0" max="100" value="50"></div>
+  <div class="cg"><label>馆内纸色</label><select id="selTheme">
+    <option value="xuan">宣纸夜烛</option><option value="ye">靛青夜航</option><option value="mo">墨拓残纸</option>
+  </select></div>
+  <div class="tgl on" id="tglLabels"><span>轮盘中气名</span><span class="sw"></span></div>
+  <div class="tgl on" id="tglAmb"><span>环境墨晕漂移</span><span class="sw"></span></div>
+  <hr class="csep">
+  <div class="cbtns">
+    <button class="btn" id="btnReset">重置</button>
+    <button class="btn" id="btnRand">随机纸纹</button>
+    <button class="btn wide" id="btnExpWheel">导出律历对应图</button>
+  </div>
+</aside>
+<button class="dockpill" id="dockPill" aria-label="展开调音台" title="展开调音台"><span class="bars"><i></i><i></i><i></i></span>调音台<b>⤢</b></button>
+<div class="toasts" id="toasts"></div>
+
+<!-- ================= 观印灯箱 ================= -->
+<div class="lb" id="lb" role="dialog" aria-modal="false" aria-label="版块题卡观印">
+  <div class="lb-dialog">
+    <button class="lb-close" id="lbClose" aria-label="关闭观印">✕</button>
+    <div class="lb-im"><img id="lbImg" alt="版块题卡"></div>
+    <div class="lb-info">
+      <div class="lb-head"><b id="lbName">—</b><span class="pseal" id="lbSeal">印 · —</span><span class="pins" id="lbInst">—</span><span class="lbidx" id="lbIdx">01 / 16</span></div>
+      <div class="lb-rows" id="lbRows"></div>
+      <div class="lb-quote" id="lbQuote"></div>
+      <div class="lb-subs" id="lbSubs"></div>
+      <div class="lb-btns">
+        <button class="btn primary" id="lbPlay">▶ 奏此版块</button>
+        <button class="btn" id="lbPrev">‹ 上一帧</button>
+        <button class="btn" id="lbNext">下一帧 ›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="audio/manifest.js"></script>
+<script>
+'use strict';
+/* ================= 工具 ================= */
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+const TAU=Math.PI*2;
+function toast(msg,kind){const t=document.createElement('div');t.className='toast'+(kind?' '+kind:'');t.textContent=msg;
+  $('#toasts').appendChild(t);setTimeout(()=>{t.style.opacity='0';t.style.transition='.4s';setTimeout(()=>t.remove(),420);},2600);}
+function mulberry(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+/* ================= 数据 ================= */
+const LV=[{n:'黄钟',s:0},{n:'大吕',s:1},{n:'太簇',s:2},{n:'夹钟',s:3},{n:'姑洗',s:4},{n:'仲吕',s:5},{n:'蕤宾',s:6},{n:'林钟',s:7},{n:'夷则',s:8},{n:'南吕',s:9},{n:'无射',s:10},{n:'应钟',s:11},
+{n:'清黄钟',s:12,q:1},{n:'清大吕',s:13,q:1},{n:'清太簇',s:14,q:1},{n:'清夹钟',s:15,q:1}];
+const CAL=[ // 律 / 阴阳 / 月 / 月名 / 辰 / 中气 / 季
+{y:1,m:11,mn:'仲冬',z:'子',q:'冬至',se:'冬',say:'冬至一阳生，黄钟为律本，其声雄浑，如春至物生、地蕴万灵。'},
+{y:0,m:12,mn:'季冬',z:'丑',q:'大寒',se:'冬',say:'大寒气凝，大吕助黄钟宣气，其声沉厚，如冰下泉动。'},
+{y:1,m:1,mn:'孟春',z:'寅',q:'雨水',se:'春',say:'雨水润物，太簇簇地而出，其声条达，如草木初萌。'},
+{y:0,m:2,mn:'仲春',z:'卯',q:'春分',se:'春',say:'春分昼夜均，夹钟夹辅阴阳，其声清和，如雷始发声。'},
+{y:1,m:3,mn:'季春',z:'辰',q:'谷雨',se:'春',say:'谷雨洗尘，姑洗姑洗而新，其声鲜明，如萍始生。'},
+{y:0,m:4,mn:'孟夏',z:'巳',q:'小满',se:'夏',say:'小满物盈，仲吕宣中气，其声盛长，如麦秋将至。'},
+{y:1,m:5,mn:'仲夏',z:'午',q:'夏至',se:'夏',say:'夏至一阴生，蕤宾继阳而宾阴，其声隆盛，如蝉始鸣。'},
+{y:0,m:6,mn:'季夏',z:'未',q:'大暑',se:'夏',say:'大暑土润，林钟林然而盛，其声宽缓，如大雨时行。'},
+{y:1,m:7,mn:'孟秋',z:'申',q:'处暑',se:'秋',say:'处暑气肃，夷则夷而易则，其声整肃，如鹰乃祭鸟。'},
+{y:0,m:8,mn:'仲秋',z:'酉',q:'秋分',se:'秋',say:'秋分雷收，南吕南任而成，其声清敛，如水始涸。'},
+{y:1,m:9,mn:'季秋',z:'戌',q:'霜降',se:'秋',say:'霜降物藏，无射无有射著，其声肃杀，如草木黄落。'},
+{y:0,m:10,mn:'孟冬',z:'亥',q:'小雪',se:'冬',say:'小雪闭塞，应钟应时而藏，其声归寂，如天气上升。'}];
+const TESTOF={0:'黄钟测试 · 2023-12-15 · 首次大规模对外测试',5:'仲吕测试 · 2024-05-31 · 终测',6:'蕤宾测试 · 2023-06-09 · 首测（小规模技术封测）',8:'夷则测试 · 2024-08-28 · 限量删档 · 双端互通'};
+const DIAO={gong:{n:'宫调',c:'#B8860B',deg:0,tim:'zhong'},shang:{n:'商调',c:'#8A7A5C',deg:2,tim:'qing'},jue:{n:'角调',c:'#3D7EA6',deg:4,tim:'di'},zhi:{n:'徵调',c:'#C0392B',deg:7,tim:'tan'},yu:{n:'羽调',c:'#4A545E',deg:9,tim:'xun'},
+q1:{n:'四清声·一',c:'#A8763E',deg:12,tim:'zhong'},q2:{n:'四清声·二',c:'#96683A',deg:13,tim:'qing'},q3:{n:'四清声·三',c:'#8A5F36',deg:14,tim:'tan'},q4:{n:'四清声·高',c:'#7D5632',deg:15,tim:'di'}};
+const CATS=[
+{id:'shiyin',n:'食饮',d:'q3',quote:'四清声第三音，其声和乐，如春回禾生，养育万民，可喻食饮百味。',subs:['佳肴','食材']},
+{id:'shuhua',n:'书画',d:'jue',quote:'角调之音，其声绮丽，如夏夜月圆，玉池莲满，可喻笔墨丹青。',subs:['书法·未开放','绘画']},
+{id:'minqi',n:'民器',d:'shang',quote:'商调之音，其声繁盛，如春华簇生，百艺俱现，可喻百工民器。',subs:['匠作','工具','手艺','花钱']},
+{id:'bingge',n:'兵戈',d:'yu',quote:'羽调之音，其声肃杀，如霜寒将至，万物伏藏，可喻铸冶兵戈。',subs:['铸造','旧物','矿物']},
+{id:'yuewu',n:'乐舞',d:'zhi',quote:'徵调之音，其声悠远，如秋实盈仓，万民安乐，可喻乐舞百戏。',subs:['乐曲','古谱']},
+{id:'shihua',n:'诗话',d:'yu',quote:'羽调之音，其声至阴，如孟冬寒冰，覆盖城池，可喻诗词故事。',subs:['别录','话术','诗歌']},
+{id:'yuxi',n:'娱戏',d:'jue',quote:'角调之音，其声轻灵，如盛夏翠荫，稚子嬉戏，可喻游艺娱戏。',subs:['弈棋','垂钓','神射','杂戏']},
+{id:'xiadao',n:'侠道',d:'q4',quote:'四清声最高音，其声清澈，如义士执剑，以身传道，可喻侠义仁爱。',subs:['武学','奇术','不平事','敌手']},
+{id:'yishu',n:'医术',d:'q2',quote:'四清声第二音，其声沉静，如医者问诊，潜心药石，可喻岐黄医术。',subs:['医方','药材','杂症','药品']},
+{id:'lvling',n:'律令',d:'gong',quote:'宫调之音，其声庄严，如春雷将至，声震四方，可喻人世律法。',subs:['十恶','刑罚']},
+{id:'fangwai',n:'方外',d:'zhi',quote:'徵调之音，其声冲和，如夏秋相交，花眠叶落，可喻方外秘学。',subs:['佛教','道教']},
+{id:'yingzao',n:'营造',d:'q1',quote:'四清声第一声，其声清亮，如击铁筑城，抵御风雪，可喻建筑营造。',subs:['厅堂','亭台']},
+{id:'shanggu',n:'商贾',d:'jue',quote:'角调之音，其声鲜明，如夏雨天青，洗旧去新，可喻商贾通货。',subs:['商铺','商货']},
+{id:'tianxiang',n:'天象',d:'yu',quote:'羽调之音，其声自然，如秋月映空，聚散天星，可喻历法天象。',subs:['天文','算学','历法']},
+{id:'fengwu',n:'风物',d:'gong',quote:'宫调之音，其声雄浑，如春至物生，地蕴万灵，可喻山川地理。',subs:['山川','蹊跷','草植','走兽','鱼虫','飞禽','海错']},
+{id:'shouye',n:'授业',d:'shang',quote:'商调之音，其声清和，如春夏相交，生机相承。可喻传道授业。',subs:['传道','圣言','博识','民俗','书籍']}];
+/* 图录：pic/ 截图与 CATS 同序；SEAL＝游戏题卡朱印之律（LV 下标，12–15 为四清声） */
+const PIC_FILES=['截屏2026-11-18 22.08.09.png','截屏2026-11-18 22.08.20.png','截屏2026-11-18 22.08.33.png','截屏2026-11-18 22.08.44.png',
+'截屏2026-11-18 22.08.55.png','截屏2026-11-18 22.09.04.png','截屏2026-11-18 22.09.16.png','截屏2026-11-18 22.09.27.png',
+'截屏2026-11-18 22.09.36.png','截屏2026-11-18 22.09.43.png','截屏2026-11-18 22.09.50.png','截屏2026-11-18 22.09.57.png',
+'截屏2026-11-18 22.10.06.png','截屏2026-11-18 22.10.13.png','截屏2026-11-18 22.10.23.png','截屏2026-11-18 22.10.34.png'];
+const SEAL={shiyin:14,shuhua:5,minqi:2,bingge:10,yuewu:8,shihua:11,yuxi:6,xiadao:15,yishu:13,lvling:1,fangwai:7,yingzao:12,shanggu:4,tianxiang:9,fengwu:0,shouye:3};
+/* 乐器名：从玩家整理之「十二律＋四清声（以黄钟为宫）」表，与题卡白描逐帧核对一致 */
+const INST={shiyin:'竹笛',shuhua:'瑟',minqi:'洞箫',bingge:'甬钟',yuewu:'二胡',shihua:'排箫',yuxi:'笙',xiadao:'琵琶',yishu:'腰鼓',lvling:'路鼓',fangwai:'埙',yingzao:'钮钟',shanggu:'阮',tianxiang:'玉磬',fengwu:'古筝',shouye:'古琴'};
+const picSrc=i=>encodeURI('pic/'+PIC_FILES[i]);
+const thumbSrc=i=>'pic/thumb/'+String(i+1).padStart(2,'0')+'.png';
+const WUYIN=[{n:'宫',e:'土',dir:'中',se:'季夏',c:'黄',off:0},{n:'商',e:'金',dir:'西',se:'秋',c:'白',off:2},{n:'角',e:'木',dir:'东',se:'春',c:'青',off:4},{n:'徵',e:'火',dir:'南',se:'夏',c:'赤',off:7},{n:'羽',e:'水',dir:'北',se:'冬',c:'黑',off:9}];
+const BAYIN=[{k:'zhong',n:'金',s:'METAL',ins:'钟 · 镈 · 铙',t:'bronze bell'},
+{k:'qing',n:'石',s:'STONE',ins:'磬 · 编磬',t:'stone chime'},
+{k:'tan',n:'丝',s:'SILK',ins:'琴 · 瑟 · 筝',t:'plucked string'},
+{k:'di',n:'竹',s:'BAMBOO',ins:'箫 · 管 · 笛',t:'breath flute'},
+{k:'sheng',n:'匏',s:'GOURD',ins:'笙 · 竽',t:'reed mouth-organ'},
+{k:'xun',n:'土',s:'CLAY',ins:'埙 · 缶',t:'clay vessel flute'},
+{k:'gu',n:'革',s:'HIDE',ins:'鼓 · 鼗',t:'skin drum'},
+{k:'mu',n:'木',s:'WOOD',ins:'柷 · 敔',t:'wood clapper'}];
+const TTEST=[
+{n:'蕤宾测试',lv:6,d:'2023.6.9 – 6.11',q:'技术性封测 · PC · 约1000人'},
+{n:'黄钟测试',lv:0,d:'2023.12.15 – 12.22',q:'限量删档 · PC · 1.5万资格'},
+{n:'仲吕测试',lv:5,d:'2024.5.31 – 6.22',q:'内测'},
+{n:'夷则测试',lv:8,d:'2024.8.28 – 9.1',q:'限量计费删档 · 双端互通'}];
+const TSEA=[
+{n:'黄钟长鸣',lv:0,d:'2024.12.27 – 2025.3.28',v:'1.0 – 1.6.5',c:8},
+{n:'夹钟并作',lv:3,d:'2025.3.28 – 6.20',v:'1.7 – 1.9.0A',c:9},
+{n:'蕤宾同音',lv:6,d:'2025.6.20 – 9.26',v:'1.9.0B – 1.9.5E',c:7},
+{n:'南吕传响',lv:9,d:'2025.9.26 – 12.27',v:'2.0 – 2.2.5C',c:7},
+{n:'黄钟正响',lv:0,d:'2025.12.27 – 2026.3.27',v:'2.3 – 2.5.5A',c:6},
+{n:'夹钟奏雅',lv:3,d:'2026.3.27 – 6.26',v:'2.5.5B – 2.6.5B',c:6},
+{n:'蕤宾叠奏',lv:6,d:'2026.6.26 – 9.24',v:'2.7.0A – 2.8.0B',c:7},
+{n:'南吕相和',lv:9,d:'2026.9.24 – 今',v:'2.8.5 – 2.9.5A',c:4,now:true}];
+const TCN=['壹','贰','叁','肆','伍','陆','柒','捌'];
+/* ================= 状态 ================= */
+const S={theme:'xuan',vol:.8,dec:1,timbre:'zhong',seq:235,houSpeed:1,ash:.6,glow:.5,labels:true,amb:true,
+  sound:true,seed:7,gong:0,sel:0,play:-1,wview:'wheel',
+  hou:{run:false,qi:0,frac:0,fired:false},conn:{}};
+const THEMES={xuan:{bg:'#0E0B08',paper:'#F3EAD8',paper2:'#E7DCC4',ink:'#2A2118',ink2:'#5C5040',zhu:'#C0392B',zhuHi:'#E0553F',dian:'#3D7EA6',dianHi:'#63A8CE',jin:'#D9A441',jinHi:'#E9C46A',line:'rgba(217,164,65,.35)'},
+ye:{bg:'#080D14',paper:'#E9EEF2',paper2:'#D8E0E6',ink:'#18222C',ink2:'#46586A',zhu:'#C0392B',zhuHi:'#E0553F',dian:'#3D7EA6',dianHi:'#63A8CE',jin:'#D9A441',jinHi:'#E9C46A',line:'rgba(99,168,206,.4)'},
+mo:{bg:'#0B0D0B',paper:'#EDEFE4',paper2:'#DDE0D2',ink:'#20261E',ink2:'#4E584A',zhu:'#B03A2E',zhuHi:'#D05548',dian:'#4E8F7B',dianHi:'#79B4A0',jin:'#D9A441',jinHi:'#E9C46A',line:'rgba(111,160,111,.4)'}};
+const T=()=>THEMES[S.theme];
+const SEASON={春:'#6FA06F',夏:'#C0392B',秋:'#D9A441',冬:'#3D7EA6'};
+/* ================= 音频 ================= */
+let AC=null,master=null,noiseBuf=null;
+function ac(){if(!AC){AC=new (window.AudioContext||window.webkitAudioContext)();master=AC.createGain();master.gain.value=S.sound?S.vol:0;master.connect(AC.destination);
+  noiseBuf=AC.createBuffer(1,AC.sampleRate*1.2,AC.sampleRate);const d=noiseBuf.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;}
+  if(AC.state==='suspended')AC.resume();return AC;}
+function setVol(){const v=S.sound?S.vol:0;if(master)master.gain.setTargetAtTime(v,AC.currentTime,.03);
+  Object.values(players).forEach(a=>a.volume=v);if(entryA)entryA.volume=v;}
+function env(g,t0,a,peak,dur){g.gain.setValueAtTime(0,t0);g.gain.linearRampToValueAtTime(peak,t0+a);g.gain.exponentialRampToValueAtTime(.0008,t0+dur);}
+function osc(type,f,t0,dur,peak,dest){const o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.setValueAtTime(f,t0);
+  env(g,t0,.008,peak,dur);o.connect(g);g.connect(dest||master);o.start(t0);o.stop(t0+dur+.05);return o;}
+function noise(t0,dur,peak,f0,f1,q){const src=AC.createBufferSource();src.buffer=noiseBuf;const bp=AC.createBiquadFilter();bp.type='bandpass';bp.Q.value=q||1;
+  bp.frequency.setValueAtTime(f0,t0);bp.frequency.exponentialRampToValueAtTime(Math.max(60,f1),t0+dur);
+  const g=AC.createGain();env(g,t0,.01,peak,dur);src.connect(bp);bp.connect(g);g.connect(master);src.start(t0);src.stop(t0+dur+.05);}
+function voice(tim,f,durMul,peakMul,when){
+  if(!S.sound&&when===undefined)return; // 静音时不建节点（仍允许状态反馈）
+  ac();const t0=when!==undefined?when:AC.currentTime;const D=S.dec*(durMul||1);const P=(peakMul||1)*.9;
+  switch(tim){
+    case 'zhong':{const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.setValueAtTime(f*6,t0);lp.frequency.exponentialRampToValueAtTime(f*1.6,t0+D*1.1);lp.connect(master);
+      osc('triangle',f,t0,D*1.5,P*.5,lp);osc('sine',f*2.0,t0,D*1.1,P*.2,lp);osc('sine',f*2.76,t0,D*.8,P*.1,lp);osc('sine',f*5.4,t0,D*.4,P*.05,lp);break;}
+    case 'qing':{osc('sine',f,t0,D*.9,P*.45);osc('sine',f*2.4,t0,D*.6,P*.2);osc('sine',f*3.9,t0,D*.35,P*.1);noise(t0,.06,P*.12,f*3,f*2,3);break;}
+    case 'tan':{const o=osc('triangle',f,t0,D*.8,P*.5);o.frequency.exponentialRampToValueAtTime(f*.995,t0+D*.8);osc('sine',f*2,t0,D*.35,P*.12);noise(t0,.03,P*.1,f*2,f,2);break;}
+    case 'di':{const o=osc('sine',f,t0,D*1.1,P*.42);const l=AC.createOscillator(),lg=AC.createGain();l.frequency.value=5.2;lg.gain.value=f*.006;l.connect(lg);lg.connect(o.frequency);l.start(t0);l.stop(t0+D*1.1);
+      noise(t0,D*.9,P*.05,f*1.5,f*1.2,1.4);break;}
+    case 'sheng':{const lp=AC.createBiquadFilter();lp.type='lowpass';lp.frequency.value=f*4;lp.connect(master);
+      osc('sawtooth',f,t0,D*.9,P*.16,lp);osc('sawtooth',f*1.005,t0,D*.9,P*.14,lp);osc('sine',f*2,t0,D*.7,P*.1,lp);break;}
+    case 'xun':{osc('sine',f,t0,D*1.2,P*.5);osc('triangle',f*.5,t0,D*1.0,P*.14);noise(t0,D*.8,P*.07,500,300,1);break;}
+    case 'gu':{const o=osc('sine',f*.5,t0,D*.5,P*.8);o.frequency.exponentialRampToValueAtTime(f*.22,t0+D*.4);noise(t0,.09,P*.2,300,120,1);break;}
+    case 'mu':{osc('square',f,t0,D*.16,P*.22);noise(t0,.05,P*.25,900,600,4);break;}
+  }
+}
+const freqOf=i=>261.63*Math.pow(2,LV[i].s/12);
+function playLv(i,tim,peak){voice(tim||S.timbre,freqOf(i),1,peak||1);flashKey(i);
+  $('#nowName').textContent=LV[i].n;$('#nowFreq').textContent=freqOf(i).toFixed(1)+' Hz · '+(LV[i].q?'清声':'正律');
+  $('#nowTimbre').textContent='音色：'+BAYIN.find(b=>b.k===(tim||S.timbre)).n+'（'+BAYIN.find(b=>b.k===(tim||S.timbre)).ins.split(' ')[0]+'）';}
+function flashKey(i){const k=$('#keys .key[data-i="'+i+'"]');if(!k)return;k.classList.add('hit');setTimeout(()=>k.classList.remove('hit'),260);}
+function tick(){if(!S.sound)return;voice('mu',880,.5,.25);}
+function whoosh(){if(!S.sound)return;ac();noise(AC.currentTime,.5,.22,300,1400,1.2);}
+/* 奏十六声 */
+let seqTimers=[];
+function stopSeq(){seqTimers.forEach(clearTimeout);seqTimers=[];S.play=-1;
+  $('#seqBtn').textContent='▶ 奏十六声（十二律 + 四清声）';$$('#keys .key').forEach(k=>k.classList.remove('hit'));}
+function playSeq(){stopSeq();stopEntry();ac();S.play=0;$('#seqBtn').textContent='■ 演奏中…';
+  for(let i=0;i<16;i++){seqTimers.push(setTimeout(()=>{S.play=i;playLv(i);
+    if(i===15){seqTimers.push(setTimeout(()=>{stopSeq();toast('十六声毕 · 十二律＋四清声','ok');},S.seq+300));}},i*S.seq));}}
+/* 版块之声：音频 or 合成回退 */
+const MAN=window.AUDIO_MANIFEST||{base:'audio/bowuzhi/',tracks:[]};
+const players={};
+const ENTRY_SRC='audio/bowuzhi/博物志入口.m4a';let entryA=null;
+function entryOn(on){$('#seqTop').textContent=on?'■ 演奏中…':'▶ 博物志音律';}
+function stopEntry(){if(entryA&&!entryA.paused){entryA.pause();entryA.currentTime=0;}entryOn(false);}
+function playEntry(){
+  if(entryA&&!entryA.paused){stopEntry();toast('博物志音律 · 已停止');return;}
+  stopSeq();Object.keys(players).forEach(id=>{players[id].pause();players[id].currentTime=0;});
+  if(!entryA){entryA=new Audio(ENTRY_SRC);entryA.addEventListener('ended',()=>entryOn(false));}
+  entryA.currentTime=0;entryA.volume=S.sound?S.vol:0;
+  entryA.play().then(()=>entryOn(true)).catch(()=>{entryOn(false);toast('博物志音律暂不可用','warn');});
+}
+function trackOf(id){return MAN.tracks.find(t=>t.id===id);}
+function srcOf(t){return /^https?:|^\//.test(t.file)?t.file:MAN.base+t.file;}
+function playCat(cat,card){
+  stopEntry();
+  const t=trackOf(cat.id);
+  if(S.conn[cat.id]==='ok'&&t){let a=players[cat.id];if(!a){a=new Audio(srcOf(t));players[cat.id]=a;
+      a.addEventListener('ended',syncLbPlay);a.addEventListener('pause',syncLbPlay);a.addEventListener('play',syncLbPlay);}
+    Object.keys(players).forEach(id=>{if(id!==cat.id){players[id].pause();players[id].currentTime=0;}});
+    a.currentTime=0;a.volume=S.sound?S.vol:0;a.play().catch(()=>{fallbackCat(cat,card);});
+    pulseCard(card);toast('正在播放 · 《'+cat.n+'》','ok');syncLbPlay();return;}
+  fallbackCat(cat,card);
+}
+function fallbackCat(cat,card){
+  const d=DIAO[cat.d];ac();const base=261.63*Math.pow(2,d.deg/12);
+  const notes=[0,4,7,12];const t0=AC.currentTime;
+  notes.forEach((n,k)=>{voice(d.tim,base*Math.pow(2,n/12),.9,.8,t0+k*.16);});
+  pulseCard(card);
+  if(S.conn[cat.id]!=='ok')toast('《'+cat.n+'》音频不可用 · 已回退合成音色（'+d.n+'动机）','warn');
+  syncLbPlay();
+}
+function pulseCard(card){if(!card)return;card.classList.add('hit');setTimeout(()=>card.classList.remove('hit'),420);}
+function probeAll(){
+  let done=0;
+  MAN.tracks.forEach(t=>{
+    const a=new Audio();a.preload='auto';let settled=false;
+    const finish=st=>{if(settled)return;settled=true;S.conn[t.id]=st;done++;};
+    const to=setTimeout(()=>{a.src='';finish('miss');},2500);
+    a.addEventListener('canplaythrough',()=>{clearTimeout(to);finish('ok');},{once:true});
+    a.addEventListener('error',()=>{clearTimeout(to);finish('miss');},{once:true});
+    a.src=srcOf(t);
+  });
+}
+/* ================= 构建 UI ================= */
+function buildKeys(){$('#keys').innerHTML=LV.map((l,i)=>'<div class="key'+(i<12?(CAL[i].y?' yang':' yin'):' q')+'" data-i="'+i+'" role="button" tabindex="0"><b>'+l.n+'</b><s>'+(l.q?'清声':'律'+(i+1))+'</s></div>').join('');
+  $$('#keys .key').forEach(k=>{const h=()=>{ac();playLv(+k.dataset.i);};k.onclick=h;k.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();h();}};});}
+function buildB(){ $('#bgrid').innerHTML=CATS.map(c=>{const d=DIAO[c.d];
+  return '<button class="bcard" data-id="'+c.id+'"><span class="top"><b>'+c.n+'</b><span class="diao" style="background:'+d.c+'">'+d.n+'</span></span>'+
+  '<p>'+c.quote+'</p><span class="subs">'+c.subs.map(s=>'<i>'+s+'</i>').join('')+'</span><span class="play">▶ 试听</span></button>';}).join('');
+  $$('#bgrid .bcard').forEach(el=>{el.onclick=()=>{ac();playCat(CATS.find(c=>c.id===el.dataset.id),el);};});}
+/* ---- 版块图录 + 观印灯箱 ---- */
+function buildGallery(){
+  $('#pgrid').innerHTML=CATS.map((c,i)=>'<button class="pcard" data-i="'+i+'" title="奏此版块并观印 · '+c.n+'">'+
+    '<span class="im"><img loading="lazy" decoding="async" src="'+thumbSrc(i)+'" alt="'+c.n+' 版块题卡"></span>'+
+    '<span class="pf"><span class="r1"><b>'+c.n+'</b><i>'+String(i+1).padStart(2,'0')+'</i></span>'+
+    '<span class="r2"><span class="pseal">'+LV[SEAL[c.id]].n+'</span><span class="pins">'+INST[c.id]+'</span></span></span></button>').join('');
+  $$('#pgrid .pcard').forEach(el=>el.onclick=()=>{ac();playCat(CATS[+el.dataset.i],el);openLB(+el.dataset.i,el);});
+}
+const LB={open:false,i:0,opener:null};
+function openLB(i,opener){LB.open=true;LB.i=i;LB.opener=opener||null;renderLB();$('#lb').classList.add('open');$('#lbClose').focus();}
+function closeLB(){if(!LB.open)return;LB.open=false;$('#lb').classList.remove('open');syncLbPlay();if(LB.opener)LB.opener.focus();tick();}
+function navLB(d){LB.i=(LB.i+d+CATS.length)%CATS.length;renderLB();tick();}
+function renderLB(){
+  const i=LB.i,c=CATS[i],si=SEAL[c.id],l=LV[si],d=DIAO[c.d],cal=si<12?CAL[si]:null;
+  $('#lbImg').src=picSrc(i);$('#lbImg').alt=c.n+' 版块题卡';
+  $('#lbName').textContent=c.n;$('#lbSeal').textContent='印 · '+l.n;$('#lbInst').textContent=INST[c.id];
+  $('#lbIdx').textContent=String(i+1).padStart(2,'0')+' / 16';
+  $('#lbRows').innerHTML=
+    '<div class="row"><s>游戏朱印</s><b>'+l.n+(l.q?' · 四清声':' · '+(cal.y?'阳律':'阴吕'))+'</b></div>'+
+    (cal?'<div class="row"><s>印律配历（传统）</s><b>'+cal.m+'月 · '+cal.mn+' · '+cal.z+'辰 · '+cal.q+'</b></div>'
+        :'<div class="row"><s>清声位</s><b>第'+(si-11)+'清 · 高八度示意</b></div>')+
+    '<div class="row"><s>题记调式</s><b><span style="background:'+d.c+';font-size:9.5px;padding:2px 7px;border-radius:999px;color:#FFF9EC;font-family:var(--sans);font-weight:600">'+d.n+'</span></b></div>';
+  $('#lbQuote').textContent=c.quote;
+  $('#lbSubs').innerHTML=c.subs.map(s=>'<i>'+s+'</i>').join('');
+  syncLbPlay();
+}
+function syncLbPlay(){const b=$('#lbPlay');
+  if(!LB.open){b.textContent='▶ 奏此版块';}
+  else{const a=players[CATS[LB.i].id];b.textContent=(a&&!a.paused)?'■ 演奏中…':'▶ 奏此版块';}
+  CATS.forEach((c,i)=>{const a=players[c.id];const on=!!(a&&!a.paused);
+    const p=$('#pgrid .pcard[data-i="'+i+'"]');if(p)p.classList.toggle('playing',on);
+    const bc=$('#bgrid .bcard[data-id="'+c.id+'"]');
+    if(bc){bc.classList.toggle('playing',on);const s=bc.querySelector('.play');if(s)s.textContent=on?'■ 演奏中':'▶ 试听';}});}
+/* ---- 律历轮 ---- */
+const wheelCv=$('#wheelCv');let wheelHits=[];
+function sizeCanvas(cv,w,h){const dpr=Math.min(2,window.devicePixelRatio||1);
+  const ctx=cv.getContext('2d');
+  if(cv._w!==w||cv._h!==h||cv._dpr!==dpr){cv._w=w;cv._h=h;cv._dpr=dpr;
+    cv.width=w*dpr;cv.height=h*dpr;cv.style.aspectRatio=w+'/'+h;ctx.setTransform(dpr,0,0,dpr,0,0);}
+  return ctx;}
+function drawWheel(){
+  const W=1000,H=1000;const ctx=sizeCanvas(wheelCv,W,H);const P=T();const cx=W/2,cy=H/2;
+  ctx.clearRect(0,0,W,H);
+  // 纸底圆盘
+  const g=ctx.createRadialGradient(cx,cy,80,cx,cy,480);g.addColorStop(0,P.paper);g.addColorStop(1,P.paper2);
+  ctx.fillStyle=g;ctx.beginPath();ctx.arc(cx,cy,478,0,TAU);ctx.fill();
+  ctx.strokeStyle=P.line;ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,478,0,TAU);ctx.stroke();
+  const R=[150,268,372,452];
+  // 季弧
+  for(let i=0;i<12;i++){const a0=-Math.PI/2+i*TAU/12,a1=a0+TAU/12;
+    ctx.strokeStyle=SEASON[CAL[i].se];ctx.globalAlpha=.85;ctx.lineWidth=14;
+    ctx.beginPath();ctx.arc(cx,cy,466,a0+.012,a1-.012);ctx.stroke();ctx.globalAlpha=1;}
+  // 分隔线
+  ctx.strokeStyle='rgba(42,33,24,.28)';ctx.lineWidth=1.4;
+  for(let i=0;i<12;i++){const a=-Math.PI/2+i*TAU/12;ctx.beginPath();ctx.moveTo(cx+Math.cos(a)*R[0],cy+Math.sin(a)*R[0]);ctx.lineTo(cx+Math.cos(a)*R[3],cy+Math.sin(a)*R[3]);ctx.stroke();}
+  [R[0],R[1],R[2],R[3]].forEach(r=>{ctx.beginPath();ctx.arc(cx,cy,r,0,TAU);ctx.stroke();});
+  // 选中扇区
+  const s=S.sel;const a0=-Math.PI/2+s*TAU/12,a1=a0+TAU/12;
+  ctx.fillStyle='rgba(192,57,43,.14)';ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,R[3],a0,a1);ctx.closePath();ctx.fill();
+  ctx.strokeStyle=P.zhu;ctx.lineWidth=2.5;ctx.beginPath();ctx.moveTo(cx+Math.cos(a0)*R[0],cy+Math.sin(a0)*R[0]);ctx.lineTo(cx+Math.cos(a0)*R[3],cy+Math.sin(a0)*R[3]);
+  ctx.moveTo(cx+Math.cos(a1)*R[0],cy+Math.sin(a1)*R[0]);ctx.lineTo(cx+Math.cos(a1)*R[3],cy+Math.sin(a1)*R[3]);ctx.stroke();
+  // 文字
+  ctx.textAlign='center';ctx.textBaseline='middle';
+  for(let i=0;i<12;i++){const am=-Math.PI/2+(i+.5)*TAU/12;const on=i===s;
+    const px=r=>[cx+Math.cos(am)*r,cy+Math.sin(am)*r];
+    let p=px((R[0]+R[1])/2);ctx.fillStyle=on?P.zhu:P.ink;ctx.font=(on?'700 ':'600 ')+(on?40:34)+'px "Songti SC","Noto Serif SC",serif';
+    ctx.fillText(LV[i].n,p[0],p[1]-12);
+    ctx.font='500 19px "PingFang SC",sans-serif';ctx.fillStyle=CAL[i].y?P.zhu:P.dian;ctx.fillText(CAL[i].y?'阳律':'阴吕',p[0],p[1]+22);
+    p=px((R[1]+R[2])/2);ctx.fillStyle=P.ink2;ctx.font='600 25px "Songti SC",serif';ctx.fillText(CAL[i].m+'月',p[0],p[1]-13);
+    ctx.font='500 19px "PingFang SC",sans-serif';ctx.fillText(CAL[i].mn+' · '+CAL[i].z,p[0],p[1]+16);
+    if(S.labels){p=px((R[2]+R[3])/2);ctx.fillStyle=on?P.zhu:P.ink2;ctx.font=(on?'700 ':'500 ')+'23px "Songti SC",serif';ctx.fillText(CAL[i].q,p[0],p[1]);}
+  }
+  // 中心
+  ctx.fillStyle=P.ink;ctx.beginPath();ctx.arc(cx,cy,R[0]-14,0,TAU);ctx.fill();
+  ctx.fillStyle=P.jinHi;ctx.font='700 52px "Songti SC",serif';ctx.fillText(LV[s].n,cx,cy-26);
+  ctx.fillStyle=P.paper;ctx.font='500 22px "PingFang SC",sans-serif';ctx.fillText(CAL[s].q+' · '+CAL[s].z+'月',cx,cy+18);
+  ctx.fillStyle=P.jin;ctx.font='500 17px "PingFang SC",sans-serif';ctx.fillText('律历相配 · 点击外环切换',cx,cy+52);
+  wheelHits=[];for(let i=0;i<12;i++)wheelHits.push(i);
+}
+function wheelDetail(){const i=S.sel,c=CAL[i];
+  $('#wDetail').innerHTML='<div class="big">'+LV[i].n+'<span class="yy '+(c.y?'yang':'yin')+'">'+(c.y?'阳律':'阴吕')+'</span></div>'+
+  '<div class="row"><s>配月</s><b>'+c.m+'月 · '+c.mn+'</b></div>'+
+  '<div class="row"><s>配辰</s><b>'+c.z+'</b></div>'+
+  '<div class="row"><s>中气</s><b>'+c.q+'</b></div>'+
+  '<div class="row"><s>季</s><b style="color:'+SEASON[c.se]+'">'+c.se+'</b></div>'+
+  '<div class="row"><s>音高示意</s><b>'+freqOf(i).toFixed(1)+' Hz</b></div>'+
+  '<div class="say">'+c.say+'</div>'+
+  (TESTOF[i]?'<div class="test">燕云以律名测：'+TESTOF[i]+'</div>':'')+
+  '<button class="btn primary" id="wdPlay">▶ 听此律</button>';
+  $('#wdPlay').onclick=()=>{ac();playLv(i);};
+  $$('#wTable tr').forEach(tr=>tr.classList.toggle('on',+tr.dataset.i===i));}
+function buildWTable(){$('#wTable').innerHTML='<tr><th>律</th><th>阴阳</th><th>月</th><th>月名</th><th>辰</th><th>中气</th><th>季</th><th>乐器</th><th>博物志板块</th><th>博物志描述</th></tr>'+
+  CAL.map((c,i)=>{const b=CATS.find(x=>SEAL[x.id]===i);
+  return '<tr data-i="'+i+'"><td>'+LV[i].n+'</td><td>'+(c.y?'阳律':'阴吕')+'</td><td>'+c.m+'</td><td>'+c.mn+'</td><td>'+c.z+'</td><td>'+c.q+'</td><td>'+c.se+'</td><td>'+INST[b.id]+'</td><td>'+b.n+'</td><td class="wq">'+b.quote+'</td></tr>';}).join('')+
+  LV.slice(12).map((l,k)=>{const i=12+k;const b=CATS.find(x=>SEAL[x.id]===i);const na='<td class="na">-</td>';
+  return '<tr data-i="'+i+'" class="qrow" title="四清声：本律之高八度，不配月辰中气"><td>'+l.n+'</td>'+na+na+na+na+na+na+'<td>'+INST[b.id]+'</td><td>'+b.n+'</td><td class="wq">'+b.quote+'</td></tr>';}).join('');
+  $$('#wTable tr[data-i]').forEach(tr=>tr.onclick=()=>{const i=+tr.dataset.i;ac();
+    if(i<12){S.sel=i;drawWheel();wheelDetail();playLv(i);}
+    else{playLv(i);tr.classList.add('hit');setTimeout(()=>tr.classList.remove('hit'),420);
+      toast(LV[i].n+' · 四清声不配历 · 奏其高八度');}});}
+/* ---- 调阳 ---- */
+function buildF(){
+  /* 十六声→五音：十二律从题记之调（SEAL 反查版块）；四清声为本律高八度，阶名从本律（八度等价） */
+  const T16=[];for(let si=0;si<12;si++){const c=CATS.find(c=>SEAL[c.id]===si);T16[si]=DIAO[c.d].deg;}
+  for(let si=12;si<16;si++)T16[si]=T16[si-12];
+  $('#ftable').innerHTML='<tr><th>五音</th><th>五行</th><th>五方</th><th>五季</th><th>五色</th><th>对应十六声</th><th>博物志用调</th></tr>'+
+  WUYIN.map((w,r)=>{const ord=LV.map((l,si)=>({l,si})).filter(o=>T16[o.si]===w.off);
+  const cls=si=>si<12?('l16 '+(CAL[si].y?'ya':'yi')):'q16';
+  const sheng=ord.map(o=>'<span class="'+cls(o.si)+'">'+o.l.n+'</span>').join('');
+  const users=ord.map(o=>{const c=CATS.find(x=>SEAL[x.id]===o.si);return '<span class="'+cls(o.si)+'">'+c.n+'</span>';}).join('')||'—';
+  return '<tr data-r="'+r+'"><td style="color:'+['#B8860B','#8A7A5C','#3D7EA6','#C0392B','#4A545E'][r]+'">'+w.n+'</td><td>'+w.e+'</td><td>'+w.dir+'</td><td>'+w.se+'</td><td>'+w.c+'</td><td>'+sheng+'</td><td>'+users+'</td></tr>';}).join('');
+  $('#fNote').textContent='十六声＝十二律＋四清声：红字为阳律、蓝字为阴吕、金字为四清声（前四律之高八度，阶名与本律同）。「对应十六声」与「博物志用调」两列同序排布、逐位相对，后者金字为四清声版块；点击任一行可听该音三声动机。';
+  $$('#ftable tr[data-r]').forEach(tr=>tr.onclick=()=>{ac();const r=+tr.dataset.r;const t0=AC.currentTime;
+    [0,1,2].forEach(k=>voice(S.timbre,261.63*Math.pow(2,(WUYIN[r].off+k*2)/12),.8,.7,t0+k*.14));
+    toast('五音 · '+WUYIN[r].n+'（'+WUYIN[r].e+' / '+WUYIN[r].dir+' / '+WUYIN[r].c+'）');});}
+function buildXG(){
+  $('#gongSel').innerHTML=LV.slice(0,12).map((l,i)=>'<button data-i="'+i+'" class="'+(i===S.gong?'on':'')+'">'+l.n+'</button>').join('');
+  $$('#gongSel button').forEach(b=>b.onclick=()=>{S.gong=+b.dataset.i;buildXG();tick();});
+  let html='<div></div>'+LV.slice(0,12).map(l=>'<div class="cl">'+l.n+'</div>').join('');
+  WUYIN.forEach((w,r)=>{html+='<div class="rl">'+w.n+'</div>';
+    for(let c=0;c<12;c++){const on=((c-S.gong+12)%12)===w.off;
+      html+='<div class="xcell'+(on?' on':'')+(c===S.gong?' gongcol':'')+'" data-c="'+c+'" data-n="'+w.n+'"></div>';}});
+  $('#xgrid').innerHTML=html;
+  $$('#xgrid .xcell').forEach(cell=>cell.onclick=()=>{ac();playLv(+cell.dataset.c);});
+  const g=LV[S.gong].n;
+  $('#xgNote').textContent='今以 '+g+' 为宫：商='+LV[(S.gong+2)%12].n+'、角='+LV[(S.gong+4)%12].n+'、徵='+LV[(S.gong+7)%12].n+'、羽='+LV[(S.gong+9)%12].n+'。十二律旋相为宫，得六十调之概。';}
+function buildBayin(){$('#bayin').innerHTML=BAYIN.map(b=>'<button class="by" data-k="'+b.k+'"><b>'+b.n+'</b><s>'+b.s+' · '+b.t+'</s><p>'+b.ins+'</p></button>').join('');
+  $$('#bayin .by').forEach(el=>el.onclick=()=>{ac();const k=el.dataset.k;const t0=AC.currentTime;
+    [0,7,12].forEach((n,j)=>voice(k,261.63*Math.pow(2,n/12),1,.85,t0+j*.15));
+    el.classList.add('hit');setTimeout(()=>el.classList.remove('hit'),380);});}
+/* ---- 候气 ---- */
+const houCv=$('#houCv');let houParts=[];
+function buildQi(){$('#qitrack').innerHTML=CAL.map((c,i)=>'<div class="qi" data-i="'+i+'"><b>'+c.q+'</b>'+LV[i].n+'</div>').join('');
+  $$('#qitrack .qi').forEach(q=>q.onclick=()=>{S.hou.qi=+q.dataset.i;S.hou.frac=0;triggerQi(true);});}
+function qiLog(i,manual){const c=CAL[i];const d=document.createElement('div');
+  d.innerHTML='<b>'+c.q+' · '+LV[i].n+'气应</b> · 葭灰自管口飞动'+(manual?'（手动召气）':'')+'<i>'+c.m+'月 '+c.z+'辰</i>';
+  const log=$('#houlog');log.prepend(d);while(log.children.length>4)log.lastChild.remove();}
+function triggerQi(manual){const i=S.hou.qi;const n=Math.round(10+S.ash*46);S.hou.fired=true;
+  const geo=houGeo();const p=geo.pipes[i];
+  for(let k=0;k<n;k++){houParts.push({x:p.x+(Math.random()-.5)*p.w*.7,y:p.top,vx:(Math.random()-.5)*26,vy:-30-Math.random()*70,l:0,tl:1.4+Math.random()*1.4,r:1+Math.random()*2.2});}
+  whoosh();if(S.sound)voice('zhong',freqOf(i),1.4,.5);
+  qiLog(i,manual);
+  $$('#qitrack .qi').forEach((q,k)=>{q.classList.toggle('on',k===i);q.classList.toggle('done',k<i);});
+  $('#houNow').textContent='气应：'+CAL[i].q+' · '+LV[i].n+' → 下一候 '+CAL[(i+1)%12].q;
+  S.hou.qi=(i+1)%12;if(S.hou.qi===0)$$('#qitrack .qi').forEach(q=>q.classList.remove('done'));}
+function houGeo(){const W=1200,H=460;const pipes=[];const n=12;const mw=(W-160)/n;
+  for(let i=0;i<n;i++){const h=150+ (11-i)*9;const x=80+mw*(i+.5);pipes.push({x,w:mw*.42,top:H-120-h,h});}
+  return{W,H,pipes};}
+function drawHou(dt){
+  const geo=houGeo();const ctx=sizeCanvas(houCv,geo.W,geo.H);const P=T();const W=geo.W,H=geo.H;
+  ctx.clearRect(0,0,W,H);
+  // 缇室三重
+  for(let k=0;k<3;k++){ctx.strokeStyle='rgba(192,57,43,'+(0.34-k*.09)+')';ctx.lineWidth=2;
+    const m=14+k*13;ctx.beginPath();ctx.roundRect(m,m,W-2*m,H-2*m,14);ctx.stroke();}
+  ctx.fillStyle=P.ink2;ctx.font='500 15px "PingFang SC",sans-serif';ctx.textAlign='left';ctx.textBaseline='top';
+  ctx.fillText('缇室三重 · 密闭候气',58,52);
+  // 地
+  ctx.strokeStyle=P.line;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(50,H-120);ctx.lineTo(W-50,H-120);ctx.stroke();
+  ctx.fillStyle='rgba(217,164,65,.06)';ctx.fillRect(50,H-120,W-100,70);
+  // 管
+  geo.pipes.forEach((p,i)=>{const on=S.hou.fired&&i===((S.hou.qi+11)%12);
+    const grad=ctx.createLinearGradient(p.x-p.w/2,0,p.x+p.w/2,0);
+    grad.addColorStop(0,'#6B5A3E');grad.addColorStop(.5,'#C9B08A');grad.addColorStop(1,'#6B5A3E');
+    ctx.fillStyle=grad;ctx.beginPath();ctx.roundRect(p.x-p.w/2,p.top,p.w,p.h,4);ctx.fill();
+    ctx.strokeStyle='rgba(42,33,24,.5)';ctx.lineWidth=1.2;ctx.stroke();
+    // 灰堆
+    ctx.fillStyle='rgba(230,225,210,.85)';ctx.beginPath();ctx.ellipse(p.x,p.top+2,p.w*.42,4,0,0,TAU);ctx.fill();
+    if(on&&S.glow>0){ctx.save();ctx.shadowColor=P.jinHi;ctx.shadowBlur=26*S.glow;ctx.strokeStyle=P.jinHi;ctx.lineWidth=2;
+      ctx.beginPath();ctx.roundRect(p.x-p.w/2,p.top,p.w,p.h,4);ctx.stroke();ctx.restore();}
+    ctx.fillStyle=on?P.jinHi:P.txt3||'#8F8471';ctx.font=(on?'700 ':'500 ')+'15px "Songti SC",serif';ctx.textAlign='center';
+    ctx.fillText(LV[i].n,p.x,H-96);ctx.font='500 11px "PingFang SC",sans-serif';ctx.fillText(CAL[i].q,p.x,H-76);});
+  // 灰粒
+  houParts=houParts.filter(p=>p.l<p.tl);
+  houParts.forEach(p=>{p.l+=dt;p.x+=p.vx*dt;p.y+=p.vy*dt;p.vy+=18*dt;p.vx*=.995;
+    const a=1-p.l/p.tl;ctx.fillStyle='rgba(236,230,214,'+(a*.9)+')';ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,TAU);ctx.fill();});
+  // 气序进度
+  const frac=S.hou.frac;ctx.fillStyle=P.jin;ctx.fillRect(50,H-34,(W-100)*((S.hou.qi+frac)/12),3);
+  ctx.strokeStyle=P.line;ctx.strokeRect(50,H-34,W-100,3);
+}
+/* ---- hero ---- */
+const heroCv=$('#heroCv');let heroMotes=[];
+function drawHero(t){
+  const r=heroCv.getBoundingClientRect();if(r.width<10)return;
+  const ctx=sizeCanvas(heroCv,Math.round(r.width),Math.round(r.height));const P=T();const W=r.width,H=r.height;
+  ctx.clearRect(0,0,W,H);
+  const rnd=mulberry(S.seed);
+  // 星
+  for(let i=0;i<70;i++){const x=rnd()*W,y=rnd()*H*.7;const tw=.4+.6*Math.abs(Math.sin(t*.0006+i));
+    ctx.fillStyle='rgba(233,196,106,'+(.10+.22*tw*S.glow)+')';ctx.beginPath();ctx.arc(x,y,rnd()*1.4+.4,0,TAU);ctx.fill();}
+  // 月（真月牙路径：光晕只随月牙，不叠黑圆）
+  const mx=W*.82,my=H*.2,rA=26,bx=mx+10,by=my-6,rB=22;
+  const dx=bx-mx,dy=by-my,d=Math.hypot(dx,dy);
+  const a=(rA*rA-rB*rB+d*d)/(2*d),h=Math.sqrt(Math.max(0,rA*rA-a*a));
+  const px=mx+a*dx/d,py=my+a*dy/d,ux=-dy/d,uy=dx/d;
+  const i1x=px+h*ux,i1y=py+h*uy,i2x=px-h*ux,i2y=py-h*uy;
+  const a1=Math.atan2(i1y-my,i1x-mx),a2=Math.atan2(i2y-my,i2x-mx);
+  const b1=Math.atan2(i1y-by,i1x-bx),b2=Math.atan2(i2y-by,i2x-bx);
+  ctx.save();ctx.shadowColor=P.jinHi;ctx.shadowBlur=40*S.glow;ctx.fillStyle='rgba(233,196,106,.8)';
+  ctx.beginPath();ctx.arc(mx,my,rA,a1,a2,false);ctx.arc(bx,by,rB,b2,b1,true);ctx.closePath();ctx.fill();ctx.restore();
+  // 十二管剪影
+  const n=12,mw=W/n;
+  for(let i=0;i<n;i++){const h=H*.16+(11-i)*H*.008;const x=mw*(i+.5);const w=mw*.3;
+    ctx.fillStyle='rgba(237,226,206,.07)';ctx.beginPath();ctx.roundRect(x-w/2,H-h,w,h,3);ctx.fill();
+    ctx.strokeStyle='rgba(217,164,65,.18)';ctx.lineWidth=1;ctx.stroke();
+    const ph=Math.sin(t*.0004+i*1.7)*.5+.5;
+    ctx.fillStyle='rgba(233,196,106,'+(.05+.12*ph*S.glow)+')';ctx.beginPath();ctx.ellipse(x,H-h,w*.4,3,0,0,TAU);ctx.fill();}
+  // 浮灰
+  if(heroMotes.length<40&&Math.random()<.3)heroMotes.push({x:Math.random()*W,y:H*.9,vy:-8-Math.random()*14,vx:(Math.random()-.5)*6,l:0,tl:6+Math.random()*5,r:.8+Math.random()*1.6});
+  heroMotes=heroMotes.filter(m=>m.l<m.tl);
+  heroMotes.forEach(m=>{m.l+=1/60;m.x+=m.vx/60;m.y+=m.vy/60;const a=(1-m.l/m.tl)*.35;
+    ctx.fillStyle='rgba(236,230,214,'+a+')';ctx.beginPath();ctx.arc(m.x,m.y,m.r,0,TAU);ctx.fill();});
+}
+/* ---- 时间轴 · 开服前四测 + 开服后八季 · 以律名季 ---- */
+function buildTL(){
+  $('#tlTests').innerHTML=TTEST.map((t,i)=>{const y=CAL[t.lv].y;
+    return '<button class="tcard'+(y?' yang':' yin')+'" data-lv="'+t.lv+'" title="听'+LV[t.lv].n+'之音">'+
+      '<span class="tc-top"><span class="lvchip '+(y?'yang':'yin')+'">'+LV[t.lv].n+'</span><i>测'+TCN[i]+'</i></span>'+
+      '<b>'+t.n+'</b><s>'+t.d+'</s><p>'+t.q+'</p><span class="tc-play">▶ 听'+LV[t.lv].n+'</span></button>';}).join('');
+  $$('#tlTests .tcard').forEach(el=>el.onclick=()=>{ac();playLv(+el.dataset.lv);pulseCard(el);});
+  $('#tlCycle').innerHTML=[0,3,6,9].map((lv,k)=>'<span class="cy'+(CAL[lv].y?'':' yin')+'">'+LV[lv].n+'</span>'+(k<3?'<i>→</i>':'')).join('')+
+    '<em>四律一巡 · 八季两巡 · 阳律阴吕相间</em>';
+  $('#tlSeasons').innerHTML=TSEA.map((s,i)=>{const y=CAL[s.lv].y;
+    return '<button class="srow'+(y?' yang':' yin')+(s.now?' now':'')+'" data-lv="'+s.lv+'" title="听'+LV[s.lv].n+'之音">'+
+      '<span class="sdot"></span><span class="sbody">'+
+      '<span class="s1"><i class="sord">'+TCN[i]+'</i><b>'+s.n+'</b>'+(s.now?'<span class="nowchip">进行中</span>':'')+
+      '<span class="scyc">巡'+(i<4?'一':'二')+' · '+LV[s.lv].n+(y?' · 阳律':' · 阴吕')+'</span></span>'+
+      '<span class="s2"><s>'+s.d+'</s><span class="sver">'+s.v+' · '+s.c+' 版本</span></span>'+
+      '</span><span class="splay">▶</span></button>';}).join('');
+  $$('#tlSeasons .srow').forEach(el=>el.onclick=()=>{ac();playLv(+el.dataset.lv);pulseCard(el);});
+}
+/* ================= 主控 ================= */
+function bindRange(id,out,key,fmt,after){const r=$(id),o=$(out);
+  const upd=()=>{const v=+r.value;o.textContent=fmt?fmt(v):v;r.style.setProperty('--p',((v-r.min)/(r.max-r.min)*100)+'%');after(v);};
+  r.addEventListener('input',upd);upd();}
+function applyTheme(){document.body.dataset.theme=S.theme;drawWheel();}
+function init(){
+  buildKeys();buildB();buildGallery();buildWTable();buildF();buildXG();buildBayin();buildQi();buildTL();
+  drawWheel();wheelDetail();
+  bindRange('#rVol','#oVol','vol',null,v=>{S.vol=v/100;setVol();});
+  bindRange('#rDec','#oDec','dec',null,v=>{S.dec=v/100;});
+  bindRange('#rSeq','#oSeq','seq',null,v=>{S.seq=v;});
+  bindRange('#rHou','#oHou','hou',null,v=>{S.houSpeed=v/100;});
+  bindRange('#rAsh','#oAsh','ash',null,v=>{S.ash=v/100;});
+  bindRange('#rGlow','#oGlow','glow',null,v=>{S.glow=v/100;});
+  $('#selTimbre').onchange=e=>{S.timbre=e.target.value;$('#nowTimbre').textContent='音色：'+BAYIN.find(b=>b.k===S.timbre).n;tick();};
+  $('#selTheme').onchange=e=>{S.theme=e.target.value;applyTheme();tick();toast('纸色 · '+e.target.selectedOptions[0].textContent);};
+  $('#tglLabels').onclick=()=>{S.labels=!S.labels;$('#tglLabels').classList.toggle('on',S.labels);drawWheel();};
+  $('#tglAmb').onclick=()=>{S.amb=!S.amb;$('#tglAmb').classList.toggle('on',S.amb);document.body.classList.toggle('no-amb',!S.amb);};
+  $('#sndBtn').onclick=()=>{S.sound=!S.sound;$('#sndBtn').className='snd '+(S.sound?'on':'off');$('#sndTxt').textContent=S.sound?'律吕 开':'律吕 关';setVol();
+    toast(S.sound?'律吕已开':'已静音 · 全部声音关闭',S.sound?'ok':'warn');};
+  $('#seqBtn').onclick=playSeq;$('#seqTop').onclick=()=>{playEntry();$('#tiaoyang').scrollIntoView({behavior:'smooth'});};
+  $('#seqStop').onclick=()=>{stopSeq();toast('已停止');};
+  $('#wView').onclick=()=>{S.wview=S.wview==='wheel'?'table':'wheel';
+    $('#wTableWrap').style.display=S.wview==='table'?'block':'none';
+    $('#wView').textContent=S.wview==='wheel'?'切换表格视图':'切换轮盘视图';tick();};
+  $('#wPlay').onclick=()=>{ac();playLv(S.sel);};
+  $('#wExp').onclick=expWheel;$('#btnExpWheel').onclick=expWheel;
+  $('#houRun').onclick=()=>{ac();S.hou.run=!S.hou.run;$('#houRun').textContent=S.hou.run?'❚❚ 暂停候气':'▶ 开始候气';
+    toast(S.hou.run?'候气开始 · 气序推进':'候气暂停');};
+  $('#houNext').onclick=()=>{ac();triggerQi(true);};
+  $('#houReset').onclick=()=>{S.hou.run=false;S.hou.qi=0;S.hou.frac=0;S.hou.fired=false;houParts=[];$('#houRun').textContent='▶ 开始候气';
+    $$('#qitrack .qi').forEach(q=>q.classList.remove('on','done'));$('#houNow').textContent='待气：冬至 · 黄钟';
+    $('#houlog').innerHTML='<div><b>缇室已闭</b> · 十二管陈毕 · 葭莩灰覆管端<i>待「开始候气」</i></div>';toast('候气复位');};
+  probeAll(); // 开页自动探测一次：决定音频 or 合成回退（不作状态展示）
+  // 观印灯箱
+  $('#lbClose').onclick=closeLB;
+  $('#lbPrev').onclick=()=>navLB(-1);
+  $('#lbNext').onclick=()=>navLB(1);
+  $('#lbPlay').onclick=()=>{const c=CATS[LB.i];ac();playCat(c,$('#bgrid .bcard[data-id="'+c.id+'"]'));
+    pulseCard($('#pgrid .pcard[data-i="'+LB.i+'"]'));syncLbPlay();};
+  $('#lb').addEventListener('click',e=>{if(e.target===e.currentTarget)closeLB();});
+  addEventListener('keydown',e=>{if(!LB.open)return;
+    if(e.key==='Escape')closeLB();else if(e.key==='ArrowLeft')navLB(-1);else if(e.key==='ArrowRight')navLB(1);});
+  $('#btnReset').onclick=()=>{Object.assign(S,{vol:.8,dec:1,timbre:'zhong',seq:235,houSpeed:1,ash:.6,glow:.5,labels:true,amb:true,theme:'xuan',gong:0,sel:0});
+    S.hou={run:false,qi:0,frac:0,fired:false};houParts=[];
+    $('#rVol').value=80;$('#rDec').value=100;$('#rSeq').value=235;$('#rHou').value=100;$('#rAsh').value=60;$('#rGlow').value=50;
+    ['#rVol','#rDec','#rSeq','#rHou','#rAsh','#rGlow'].forEach(id=>$(id).dispatchEvent(new Event('input')));
+    $('#selTimbre').value='zhong';$('#selTheme').value='xuan';$('#tglLabels').classList.add('on');$('#tglAmb').classList.add('on');document.body.classList.remove('no-amb');
+    $('#houRun').textContent='▶ 开始候气';$$('#qitrack .qi').forEach(q=>q.classList.remove('on','done'));$('#houNow').textContent='待气：冬至 · 黄钟';
+    $('#houlog').innerHTML='<div><b>缇室已闭</b> · 十二管陈毕 · 葭莩灰覆管端<i>待「开始候气」</i></div>';
+    applyTheme();buildXG();drawWheel();wheelDetail();stopEntry();setVol();toast('已重置');};
+  $('#btnRand').onclick=()=>{S.seed=(Math.random()*1e9)|0;heroMotes=[];tick();toast('纸纹／星野已随机 · seed '+S.seed);};
+  // 调音台最小化 / 恢复
+  const dockStore={get(){try{return localStorage.getItem('lv-dockmin')==='1'}catch(e){return false}},set(v){try{localStorage.setItem('lv-dockmin',v?'1':'0')}catch(e){}}};
+  if(dockStore.get())document.body.classList.add('dock-min');
+  $('#dockMin').onclick=()=>{document.body.classList.add('dock-min');dockStore.set(1);tick();toast('调音台已最小化 · 右下角可随时展开');};
+  $('#dockPill').onclick=()=>{document.body.classList.remove('dock-min');dockStore.set(0);tick();toast('调音台已展开');};
+  // 轮盘点击
+  wheelCv.addEventListener('click',e=>{const r=wheelCv.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width*1000-500,y=(e.clientY-r.top)/r.height*1000-500;
+    const d=Math.hypot(x,y);if(d<136||d>478)return;
+    let a=Math.atan2(y,x)+Math.PI/2;if(a<0)a+=TAU;const i=Math.floor(a/TAU*12)%12;
+    S.sel=i;drawWheel();wheelDetail();ac();playLv(i);});
+  // reveal
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
+  $$('.rv').forEach(el=>io.observe(el));
+  // nav active
+  const secs=['gallery','corresp','tiaoyang','houqi','timeline'];
+  const setActive=()=>{const sy=window.scrollY+innerHeight*.35;let cur=secs[0];
+    secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=sy)cur=id;});
+    if(innerHeight+window.scrollY>=document.documentElement.scrollHeight-60)cur='timeline';
+    $$('nav a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+cur));};
+  addEventListener('scroll',()=>requestAnimationFrame(setActive),{passive:true});setActive();
+  // hero parallax
+  addEventListener('scroll',()=>{const y=window.scrollY;if(y<innerHeight)$('#heroIn').style.transform='translateY('+y*.12+'px)';},{passive:true});
+  let rsT=null;addEventListener('resize',()=>{drawWheel();clearTimeout(rsT);rsT=setTimeout(buildTL,180);});
+  // 主循环
+  let last=performance.now();
+  const loop=t=>{const dt=Math.min(.05,(t-last)/1000);last=t;
+    drawHero(t);
+    if(S.hou.run){S.hou.frac+=dt*S.houSpeed/6;if(S.hou.frac>=1){S.hou.frac=0;triggerQi(false);}}
+    drawHou(dt);
+    requestAnimationFrame(loop);};
+  requestAnimationFrame(loop);
+  // 首 gesture 解锁音频
+  const unlock=()=>{ac();removeEventListener('pointerdown',unlock);removeEventListener('keydown',unlock);};
+  addEventListener('pointerdown',unlock);addEventListener('keydown',unlock);
+}
+function dl(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),4000);}
+function expWheel(){drawWheel();const url=wheelCv.toDataURL('image/png');const a=document.createElement('a');a.href=url;a.download='律历对应-十二律.png';a.click();toast('律历对应图已导出 PNG','ok');}
+init();
+</script>
+</body>
+</html>
